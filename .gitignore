@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.env
+
+# IDEs e Editores
+.idea/
+.vscode/
+*.swp
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Arquivos Gerados pelo Projeto
+# Ignora os relatórios CSV gerados pelo main.py
+Relatorio_Notas_Turma.csv
+
+# Ignora os feedbacks individuais em JSON gerados para os alunos
+*_resultado.json
+
+# (Opcional) Ignora a pasta com os códigos dos alunos caso você não queira subir provas reais pro GitHub
+pasta_alunos/
