@@ -14,10 +14,23 @@ def ler_arquivo(caminho):
 
 def modo_lote(avaliador, args):
     print(f"\n--- INICIANDO CORREÇÃO EM LOTE (Turma: {args.pasta_alunos}) ---")
-    texto_enunciado = ler_arquivo(args.enunciado)
-    json_rubrica = json.loads(ler_arquivo(args.rubrica))
     
-    arquivos_alunos = glob.glob(os.path.join(args.pasta_alunos, "*.py"))
+    # Resolve os caminhos relativos considerando que o script está na pasta 'src'.
+    diretorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    caminho_enunciado = os.path.join(diretorio_base, args.enunciado)
+    caminho_rubrica = os.path.join(diretorio_base, args.rubrica)
+    caminho_alunos = os.path.join(diretorio_base, args.pasta_alunos)
+    
+    texto_enunciado = ler_arquivo(caminho_enunciado)
+    texto_rubrica = ler_arquivo(caminho_rubrica)
+
+    if not texto_enunciado or not texto_rubrica:
+        print("Abordando correção: Arquivos de configuração ausentes.")
+        return
+        
+    json_rubrica = json.loads(texto_rubrica)
+    
+    arquivos_alunos = glob.glob(os.path.join(caminho_alunos, "*.py"))
     
     relatorio_geral = []
 
@@ -28,16 +41,13 @@ def modo_lote(avaliador, args):
         texto_codigo = ler_arquivo(caminho_aluno)
         resultado = avaliador.avaliar(texto_enunciado, json_rubrica, texto_codigo)
         
-        # Salvar JSON
         caminho_json = caminho_aluno.replace(".py", "_resultado.json")
         with open(caminho_json, "w", encoding="utf-8") as f:
             json.dump(resultado, f, indent=4, ensure_ascii=False)
         
-        # Feedback Visual
         nota = resultado.get("nota_final", 0.0)
         print(f"  -> Nota: {nota} | Raciocínio: {resultado.get('raciocinio', '')[:60]}...")
 
-        # Preparação do CSV
         texto_negativo = str(resultado.get("pontos_negativos", [])).lower()
         is_violacao = "violação" in texto_negativo or "erro crítico" in texto_negativo or "proibida" in texto_negativo
         
@@ -50,8 +60,8 @@ def modo_lote(avaliador, args):
             "Feedback Resumido": feedback_limpo[:150]
         })
 
-    # Gerar CSV
-    caminho_csv = "Relatorio_Notas_Turma.csv"
+    # O CSV agora será salvo na raiz do projeto.
+    caminho_csv = os.path.join(diretorio_base, "Relatorio_Notas_Turma.csv")
     with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=["Arquivo", "Nota", "Status AST", "Feedback Resumido"], delimiter=';')
         writer.writeheader()
@@ -61,10 +71,14 @@ def modo_lote(avaliador, args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--modelo', default="codellama-7b-instruct.Q4_K_M.gguf")
-    parser.add_argument('--enunciado', required=True)
-    parser.add_argument('--rubrica', required=True)
-    parser.add_argument('--pasta_alunos', required=True)
+
+    # Atualiza o modelo padrão para o Gemma 4 no Ollama.
+    parser.add_argument('--modelo', default="gemma4:12b")
+
+    # Agora os caminhos não são mais 'required=True' e apontam para as pastas certas.
+    parser.add_argument('--enunciado', default="configs/enunciado.txt")
+    parser.add_argument('--rubrica', default="configs/rubrica.json")
+    parser.add_argument('--pasta_alunos', default="codigos_alunos")
     
     args = parser.parse_args()
     avaliador = AvaliadorIA(args.modelo)

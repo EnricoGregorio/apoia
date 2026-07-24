@@ -1,11 +1,12 @@
 import json
 import ast
-from llama_cpp import Llama
+import requests # Para se comunicar com o Ollama via rede.
 
 class AvaliadorIA:
-    def __init__(self, caminho_modelo):
-        print(">>> Inicializando Motor Híbrido (Estável)...")
-        self.llm = Llama(model_path=caminho_modelo, n_ctx=4096, n_gpu_layers=-1, verbose=False)
+    def __init__(self, nome_modelo):
+        print(f">>> Inicializando Motor Híbrido conectado ao Ollama (Modelo: {nome_modelo})...")
+        self.modelo = nome_modelo 
+        self.url_ollama = "http://localhost:11434/api/generate" 
 
     def _verificar_loops(self, tree):
         violacoes = []
@@ -37,7 +38,6 @@ class AvaliadorIA:
             tree = ast.parse(codigo)
             relatorio_erros = []
 
-            # Verificar configurações da rubrica
             if config.get("proibir_loops", False):
                 erros = self._verificar_loops(tree)
                 if erros: relatorio_erros.extend(erros)
@@ -69,11 +69,8 @@ class AvaliadorIA:
         config_ast = rubrica.get("configuracao_ast", {})
         relatorio_ast = self._analise_estatica_dinamica(codigo_aluno, config_ast)
         
-        
         if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
-            
             print(f">>> BLOQUEIO AST: {relatorio_ast}")
-            
             return {
                 "raciocinio": f"O código foi rejeitado automaticamente pela análise estática. Motivo: {relatorio_ast}",
                 "nota_final": 0.0,
@@ -82,51 +79,63 @@ class AvaliadorIA:
                 "feedback": f"Seu código não pôde ser avaliado. Erro estrutural grave: {relatorio_ast}"
             }
        
-        prompt = f"""[INST] <<SYS>>
-Você é um professor de programação. O código passou na verificação de sintaxe.
-Avalie a LÓGICA do algoritmo.
+        prompt = f"""
+Você é um professor universitário de programação avaliando o código de um aluno.
+Sua única função é ler o código, analisá-lo com base no enunciado e retornar ESTRITAMENTE um objeto JSON válido.
 
-CRITÉRIOS:
-1. Se a lógica estiver correta e resolver o problema: Nota 10.
-2. Se tiver erros de lógica (índices, loop infinito, cálculo errado): Variação da nota.
-3. Se fugir do tema (ex: média em vez de ordenação): Nota 0.
-
-IMPORTANTE:
-Analise o que o enunciado pede. Escreva o feedback direto para o aluno.
-
-SAÍDA JSON:
-{{
-  "raciocinio": "Análise da lógica",
-  "nota_final": 0.0,
-  "pontos_positivos": ["Acertos"],
-  "pontos_negativos": ["Erros"],
-  "feedback": " "
-}}
-<</SYS>>
-
-### ENUNCIADO:
+### ENUNCIADO DO PROBLEMA:
 {enunciado}
 
 ### CÓDIGO DO ALUNO:
 {codigo_aluno}
 
-### SUA RESPOSTA (JSON):
-[/INST]"""
+### INSTRUÇÕES DE AVALIAÇÃO:
+1. Se a lógica estiver correta e resolver o problema: Nota 10.
+2. Se tiver erros de lógica (índices, loop infinito, cálculo errado): Variação da nota de 1 a 9.
+3. Se fugir do tema (ex: fez a média em vez de ordenação): Nota 0.
+4. Escreva o 'feedback' dirigindo-se diretamente ao aluno (ex: "Seu código falhou porque...").
+
+### FORMATO DE RESPOSTA OBRIGATÓRIO (Somente JSON puro, sem formatação markdown):
+{{
+  "raciocinio": "Texto explicando a análise técnica",
+  "nota_final": 0.0,
+  "pontos_positivos": ["Lista de acertos"],
+  "pontos_negativos": ["Lista de erros"],
+  "feedback": "Feedback pedagógico"
+}}
+"""
         
-        print(f">>> ESTRUTURA OK. Analisando Lógica com IA...")
+        print(f">>> ESTRUTURA OK. Enviando código para a IA (Ollama)...")
         
-        output = self.llm(prompt, max_tokens=1000, temperature=0.1, stop=["[/INST]"])
-        texto_gerado = output['choices'][0]['text'].strip()
+        payload = {
+            "model": self.modelo,
+            "prompt": prompt,
+            "stream": False,  
+            "format": "json", 
+            "options": {
+                "temperature": 0.1 
+            }
+        }
         
         try:
-            inicio = texto_gerado.find('{')
-            fim = texto_gerado.rfind('}') + 1
-            return json.loads(texto_gerado[inicio:fim])
-        except:
+            resposta = requests.post(self.url_ollama, json=payload)
+            resposta.raise_for_status() 
+            texto_gerado = resposta.json().get("response", "")
+            return json.loads(texto_gerado.strip())
+            
+        except requests.exceptions.RequestException as e:
             return {
-                "raciocinio": "Erro ao processar JSON da IA.",
+                "raciocinio": "Erro de comunicação com o Ollama.",
                 "nota_final": 0.0,
                 "pontos_positivos": [],
-                "pontos_negativos": ["Falha técnica na resposta da IA"],
-                "feedback": "Erro interno. Verifique o console."
+                "pontos_negativos": [f"Falha de Rede: {str(e)}"],
+                "feedback": "Verifique se o aplicativo do Ollama está aberto no seu Mac e rodando."
+            }
+        except json.JSONDecodeError as e:
+            return {
+                "raciocinio": "Erro ao processar a resposta da IA.",
+                "nota_final": 0.0,
+                "pontos_positivos": [],
+                "pontos_negativos": ["O modelo gerou um texto que não é um JSON válido."],
+                "feedback": f"Erro interno de formatação. Detalhes: {str(e)}"
             }
