@@ -3,6 +3,7 @@ import os
 import json
 import csv
 import glob
+import time
 from avaliador import AvaliadorIA
 
 def ler_arquivo(caminho):
@@ -14,6 +15,8 @@ def ler_arquivo(caminho):
 
 def modo_lote(avaliador, args):
     print(f"\n--- INICIANDO CORREÇÃO EM LOTE (Turma: {args.pasta_alunos}) ---")
+
+    tempo_inicio_total = time.time() # Marcardor do início do tempo total.
     
     # Resolve os caminhos relativos considerando que o script está na pasta 'src'.
     diretorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +40,8 @@ def modo_lote(avaliador, args):
     for caminho_aluno in arquivos_alunos:
         nome_aluno = os.path.basename(caminho_aluno)
         print(f"\n> Avaliando: {nome_aluno}...")
+
+        tempo_inicio_aluno = time.time() # Marcardor do início do tempo indiividual.
         
         texto_codigo = ler_arquivo(caminho_aluno)
         resultado = avaliador.avaliar(texto_enunciado, json_rubrica, texto_codigo)
@@ -44,9 +49,14 @@ def modo_lote(avaliador, args):
         caminho_json = caminho_aluno.replace(".py", "_resultado.json")
         with open(caminho_json, "w", encoding="utf-8") as f:
             json.dump(resultado, f, indent=4, ensure_ascii=False)
+
+        # Marcardor do fim do tempo individual.
+        tempo_fim_aluno = time.time()
+        duracao_individual = tempo_fim_aluno - tempo_inicio_aluno
         
         nota = resultado.get("nota_final", 0.0)
-        print(f"  -> Nota: {nota} | Raciocínio: {resultado.get('raciocinio', '')[:60]}...")
+        # Exibe o tempo gasto formatado com duas casas decimais no log visual.
+        print(f"  -> Nota: {nota} | Tempo: {duracao_individual:.2f}s | Raciocínio: {resultado.get('raciocinio', '')[:60]}...")
 
         texto_negativo = str(resultado.get("pontos_negativos", [])).lower()
         is_violacao = "violação" in texto_negativo or "erro crítico" in texto_negativo or "proibida" in texto_negativo
@@ -57,17 +67,27 @@ def modo_lote(avaliador, args):
             "Arquivo": nome_aluno,
             "Nota": str(nota).replace('.', ','),
             "Status AST": "VIOLAÇÃO" if is_violacao else "OK",
+            "Tempo (s)": f"{duracao_individual:.2f}", # Tempo individual exportado para a planilha.
             "Feedback Resumido": feedback_limpo[:150]
         })
 
     # O CSV agora será salvo na raiz do projeto.
     caminho_csv = os.path.join(diretorio_base, "Relatorio_Notas_Turma.csv")
     with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=["Arquivo", "Nota", "Status AST", "Feedback Resumido"], delimiter=';')
+        writer = csv.DictWriter(f, fieldnames=["Arquivo", "Nota", "Status AST",  "Tempo (s)", "Feedback Resumido"], delimiter=';')
         writer.writeheader()
         writer.writerows(relatorio_geral)
+
+    # Marcardor do fim do tempo total.
+    tempo_fim_total = time.time()
+    duracao_total = tempo_fim_total - tempo_inicio_total
+
+    # Cálculos para converter o `duracao_total` em minutos e segundos.
+    minutos = int(duracao_total // 60)
+    segundos = int(duracao_total % 60)
     
     print(f"\nCONCLUÍDO! Planilha salva em: {caminho_csv}")
+    print(f"Tempo total de processamento: {minutos}m {segundos:.2f}s")
 
 def main():
     parser = argparse.ArgumentParser()
