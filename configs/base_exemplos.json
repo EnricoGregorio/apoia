@@ -1,45 +1,65 @@
 {
-  "questao_1": {
+  "questao1": {
     "enunciado": "Você está desenvolvendo a lógica de pontuação de um jogo. Crie duas variáveis: moedas_coletadas e monstros_derrotados. Sabendo que cada moeda vale 10 pontos e cada monstro vale 50 pontos, crie uma variável pontuacao_total que calcule o valor final. Ao final, imprima o valor da pontuação total.",
     "python": {
       "exemplo_correto": {
         "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\nprint(\"A pontuação total é: \", pontuacao_total)",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O algoritmo implementou perfeitamente a lógica exigida no enunciado, calculando corretamente os pesos das moedas e dos monstros.",
           "nota_final": 10.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Lógica de cálculo correta",
+            "Criação adequada das variáveis",
+            "Uso correto do print"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Seu código está perfeito e resolve o problema exatamente como pedido."
         }
       },
       "exemplo_erro_logica": {
         "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = (moedas_coletadas + monstros_derrotados) * 60\nprint(\"A pontuação total é: \", pontuacao_total)",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno somou as variáveis antes de multiplicar, aplicando um peso único de 60, o que fere a regra matemática do enunciado (10 para moedas e 50 para monstros).",
           "nota_final": 4.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Criação das variáveis iniciais",
+            "Uso da função print"
+          ],
+          "pontos_negativos": [
+            "Cálculo matemático incorreto",
+            "Agrupamento indevido com parênteses"
+          ],
+          "feedback": "Você estruturou bem o código, mas cometeu um erro na matemática. Ao somar as moedas e monstros antes de multiplicar, você deu o mesmo peso para os dois. Lembre-se que cada um tem um valor diferente!"
         }
       },
       "exemplo_erro_sintaxe": {
         "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\npontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\nprint(\"A pontuação total é: \" pontuacao_total)",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno cometeu um erro de sintaxe ao esquecer a vírgula para separar a string da variável na função print.",
           "nota_final": 0.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Lógica matemática correta",
+            "Declaração de variáveis correta"
+          ],
+          "pontos_negativos": [
+            "Erro de sintaxe na função print (falta de vírgula)"
+          ],
+          "feedback": "Sua lógica está irretocável! Porém, o código não vai compilar porque você esqueceu de colocar uma vírgula separando o texto da variável dentro do seu 'print'."
         }
       },
       "exemplo_outro_erro": {
         "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = sum([moedas_coletadas * 10, monstros_derrotados * 50])\nprint(\"A pontuação total é: \", pontuacao_total)",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno utilizou a função pronta sum() do Python passando uma lista, em vez de estruturar a lógica aritmética clássica solicitada.",
           "nota_final": 5.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Conhecimento de funções built-in (sum)",
+            "Uso de listas"
+          ],
+          "pontos_negativos": [
+            "Fuga do objetivo pedagógico (aritmética básica)"
+          ],
+          "feedback": "Você utilizou a função sum(), o que mostra que conhece bem os recursos da linguagem! Porém, o objetivo deste exercício era construir a lógica matemática manualmente. Tente refazer usando o operador '+'."
         }
       }
     },
@@ -47,41 +67,52 @@
       "exemplo_correto": {
         "codigo": "package Questao1.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint moedas_coletadas = 12;\n\t\tint monstros_derrotados = 3;\n\t\t\n\t\tint pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50;\n\t\t\n\t\tSystem.out.println(\"A pontuação total é: \" + pontuacao_total);\n\t}\n}\n",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O algoritmo implementou perfeitamente a lógica exigida, respeitando a tipagem forte do Java e os pesos do cálculo matemático para moedas e monstros.",
           "nota_final": 10.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Lógica de cálculo correta",
+            "Declaração de tipos correta (int)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você estruturou as variáveis perfeitamente e aplicou a matemática correta para calcular a pontuação. Seu código segue as convenções do Java!"
         }
       },
       "exemplo_erro_logica": {
         "codigo": "package Questao1.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n        \n        int pontuacao_total = (moedas_coletadas + monstros_derrotados) * 60;\n        \n        System.out.println(\"A pontuação total é: \" + pontuacao_total);\n    }\n}",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno somou as variáveis antes de multiplicar, aplicando um peso único de 60, o que fere a regra matemática do enunciado.",
           "nota_final": 4.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": ["Estrutura da classe e método main corretos"],
+          "pontos_negativos": [
+            "Cálculo matemático incorreto (pesos unificados)"
+          ],
+          "feedback": "Sua classe Java está estruturada perfeitamente, mas houve um erro na matemática. Ao somar as moedas e monstros antes de multiplicar, você deu o mesmo peso para ambos!"
         }
       },
       "exemplo_erro_sintaxe": {
         "codigo": "package Questao1.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n        int pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50;\n        \n        System.out.println(\"A pontuação total é: \" pontuacao_total);\n    }\n}\n",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno cometeu um erro de sintaxe ao esquecer o operador de concatenação (+) na função System.out.println.",
           "nota_final": 0.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Lógica matemática correta",
+            "Declaração de tipos adequada"
+          ],
+          "pontos_negativos": ["Falta do operador '+' na impressão"],
+          "feedback": "Sua lógica está irretocável! Porém, o código não vai compilar porque você esqueceu de usar o sinal de '+' para juntar o texto com a variável dentro do 'System.out.println'."
         }
       },
       "exemplo_outro_erro": {
         "codigo": "package Questao1.java;\n\nimport java.util.Arrays;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n\n        int pontuacao_total = Arrays.stream(new int[]{moedas_coletadas * 10, monstros_derrotados * 50}).sum();\n        \n        System.out.println(\"A pontuação total é: \" + pontuacao_total);\n    }\n}\n",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno utilizou a API de Streams do Java (Arrays.stream) para somar os valores, fugindo da lógica aritmética básica.",
           "nota_final": 5.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Conhecimento de Streams API",
+            "Criação de arrays"
+          ],
+          "pontos_negativos": ["Fuga da instrução pedagógica básica"],
+          "feedback": "Legal ver que você domina bibliotecas avançadas como o Java Streams! No entanto, o objetivo pedagógico deste exercício era aplicar aritmética básica simples. Tente refazer utilizando o operador '+' convencional."
         }
       }
     },
@@ -89,41 +120,46 @@
       "exemplo_correto": {
         "codigo": "programa {\n\tfuncao inicio() {\n\t\t\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\t\n\t\tinteiro pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t\t\n\t}\n}",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno utilizou a sintaxe correta do Portugol e aplicou a lógica matemática exata solicitada no problema.",
           "nota_final": 10.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": [
+            "Lógica de cálculo correta",
+            "Uso correto do comando escreva"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente! Você compreendeu o problema e montou o algoritmo perfeitamente em Portugol."
         }
       },
       "exemplo_erro_logica": {
         "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\t\n\t\tinteiro pontuacao_total = (moedas_coletadas + monstros_derrotados) * 60\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t}\n}",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno utilizou a estrutura correta, mas somou as variáveis antes de multiplicar, aplicando um peso único de 60.",
           "nota_final": 4.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": ["Estrutura do programa correta"],
+          "pontos_negativos": [
+            "Cálculo matemático incorreto (pesos unificados)"
+          ],
+          "feedback": "Você mandou bem na estrutura, mas cometeu um deslize na matemática. Ao somar as moedas e monstros antes de multiplicar, você deu o mesmo peso para os dois itens."
         }
       },
       "exemplo_erro_sintaxe": {
         "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\tinteiro pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\t\t\n\t\tescreva(\"A pontuação total é: \" pontuacao_total)\n\t}\n}",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno cometeu um erro de sintaxe ao esquecer a vírgula para separar a string da variável no comando escreva.",
           "nota_final": 0.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": ["Lógica matemática correta"],
+          "pontos_negativos": ["Falta de vírgula no comando escreva"],
+          "feedback": "Sua lógica está irretocável! Porém, o interpretador vai acusar erro porque faltou uma vírgula separando o texto da sua variável no comando 'escreva'."
         }
       },
       "exemplo_outro_erro": {
         "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro valores[2] = {12 * 10, 3 * 50}\n\t\tinteiro pontuacao_total = valores[0] + valores[1]\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t}\n}",
         "saida_esperada": {
-          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "raciocinio": "O aluno utilizou vetores para armazenar e somar as pontuações, fugindo da instrução direta de criar duas variáveis simples.",
           "nota_final": 5.0,
-          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
-          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+          "pontos_positivos": ["Domínio do uso de vetores (arrays)"],
+          "pontos_negativos": ["Fuga do requisito de variáveis simples"],
+          "feedback": "Legal ver que você já sabe manipular vetores! No entanto, o enunciado pedia explicitamente a criação de duas variáveis simples. Em programação, seguir os requisitos à risca é muito importante."
         }
       }
     }

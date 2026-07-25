@@ -23,7 +23,11 @@ def modo_lote(avaliador, args):
     caminho_rubrica = os.path.join(diretorio_base, args.rubrica)
     caminho_alunos = os.path.join(diretorio_base, args.pasta_alunos)
 
-    caminho_exemplos = os.path.join(diretorio_base, "configuracoes/base_exemplos.json")
+    # Corrigido o caminho para a nomenclatura da pasta validada anteriormente
+    caminho_exemplos = os.path.join(diretorio_base, "configs/base_exemplos.json")
+    
+    pasta_correcoes = os.path.join(diretorio_base, "correcoes")
+    os.makedirs(pasta_correcoes, exist_ok=True)
     
     texto_enunciado = ler_arquivo(caminho_enunciado)
     texto_rubrica = ler_arquivo(caminho_rubrica)
@@ -36,7 +40,6 @@ def modo_lote(avaliador, args):
     json_rubrica = json.loads(texto_rubrica)
     base_exemplos = json.loads(texto_exemplos_json)
     
-    # Busca recursiva em todos os arquivos de todas as linguagens dentro das subpastas
     padrao_busca = os.path.join(caminho_alunos, "*", "*", "*.*")
     arquivos_alunos = glob.glob(padrao_busca)
     
@@ -47,27 +50,37 @@ def modo_lote(avaliador, args):
     relatorio_geral = []
 
     for caminho_aluno in arquivos_alunos:
-        # Extração dinâmica das categorias baseada nas pastas
         partes_caminho = caminho_aluno.split(os.sep)
         nome_aluno = partes_caminho[-1]
         linguagem = partes_caminho[-2].lower()
         questao = partes_caminho[-3].lower()
 
-        print(f"\n> Avaliando: {nome_aluno} | Questão: {questao.upper()} | Linguagem: {linguagem.capitalize()}...")
+        print(f"\n> Verificando: {nome_aluno} | Questão: {questao.upper()} | Linguagem: {linguagem.capitalize()}...")
 
-        # Busca o gabarito no JSON injetando as chaves dinamicamente
         exemplos_dinamicos = base_exemplos.get(questao, {}).get(linguagem, {})
+        
+        # O sistema continuará ignorando questões que ainda não estão mapeadas no JSON
         if not exemplos_dinamicos:
-             print(f"  [Aviso] Nenhum gabarito RAG encontrado para {questao}/{linguagem}. Avaliando em modo Zero-Shot.")
+             print(f"  [!] Gabarito RAG ausente para {questao}/{linguagem}. Pulando avaliação para evitar poluição de dados.")
+             continue
 
         tempo_inicio_aluno = time.time()
         
         texto_codigo = ler_arquivo(caminho_aluno)
 
-        # Injeta os exemplos exatos (se encontrados) no prompt do Ollama
-        resultado = avaliador.avaliar(texto_enunciado, json_rubrica, texto_codigo, exemplos=exemplos_dinamicos)
+        # Injeção da variável linguagem para coordenar a análise AST
+        resultado = avaliador.avaliar(
+            texto_enunciado, 
+            json_rubrica, 
+            texto_codigo, 
+            exemplos=exemplos_dinamicos, 
+            linguagem=linguagem
+        )
         
-        caminho_json = caminho_aluno.replace(os.path.splitext(caminho_aluno)[1], "_resultado.json")
+        nome_sem_extensao = os.path.splitext(nome_aluno)[0]
+        nome_arquivo_json = f"{linguagem}_{nome_sem_extensao}.json"
+        caminho_json = os.path.join(pasta_correcoes, nome_arquivo_json)
+        
         with open(caminho_json, "w", encoding="utf-8") as f:
             json.dump(resultado, f, indent=4, ensure_ascii=False)
 
@@ -92,27 +105,29 @@ def modo_lote(avaliador, args):
             "Feedback Resumido": feedback_limpo[:150]
         })
 
-    caminho_csv = os.path.join(diretorio_base, "Relatorio_Notas_Turma.csv")
-    with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
-        # Tabela CSV atualizada com rastreabilidade completa para cruzamento de dados
-        writer = csv.DictWriter(f, fieldnames=["Questão", "Linguagem", "Arquivo", "Nota", "Status AST", "Tempo (s)", "Feedback Resumido"], delimiter=';')
-        writer.writeheader()
-        writer.writerows(relatorio_geral)
+    if relatorio_geral:
+        caminho_csv = os.path.join(diretorio_base, "Relatorio_Notas_Turma.csv")
+        with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
+            writer = csv.DictWriter(f, fieldnames=["Questão", "Linguagem", "Arquivo", "Nota", "Status AST", "Tempo (s)", "Feedback Resumido"], delimiter=';')
+            writer.writeheader()
+            writer.writerows(relatorio_geral)
+        print(f"\nCONCLUÍDO! Planilha salva em: {caminho_csv}")
+        print(f"Correções individuais salvas em: {pasta_correcoes}")
+    else:
+        print("\nNenhum arquivo foi avaliado. Verifique se o base_exemplos.json está preenchido corretamente.")
 
     tempo_fim_total = time.time()
     duracao_total = tempo_fim_total - tempo_inicio_total
 
     minutos = int(duracao_total // 60)
     segundos = int(duracao_total % 60)
-    
-    print(f"\nCONCLUÍDO! Planilha salva em: {caminho_csv}")
     print(f"Tempo total de processamento: {minutos}m {segundos:.2f}s")
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--modelo', default="gemma4:12b")
-    parser.add_argument('--enunciado', default="configuracoes/enunciado.txt")
-    parser.add_argument('--rubrica', default="configuracoes/rubrica.json")
+    parser.add_argument('--enunciado', default="configs/enunciado.txt")
+    parser.add_argument('--rubrica', default="configs/rubrica.json")
     parser.add_argument('--pasta_alunos', default="codigos_alunos")
     
     args = parser.parse_args()

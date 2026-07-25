@@ -1,5 +1,6 @@
 import json
 import ast
+import re
 import requests # Para se comunicar com o Ollama via rede.
 
 class AvaliadorIA:
@@ -65,21 +66,22 @@ class AvaliadorIA:
         except Exception as e:
             return f"ERRO NO ANALISADOR: {str(e)}"
 
-    def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None):
-        config_ast = rubrica.get("configuracao_ast", {})
-        relatorio_ast = self._analise_estatica_dinamica(codigo_aluno, config_ast)
-        
-        if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
-            print(f">>> BLOQUEIO AST: {relatorio_ast}")
-            return {
-                "raciocinio": f"O código foi rejeitado automaticamente pela análise estática. Motivo: {relatorio_ast}",
-                "nota_final": 0.0,
-                "pontos_positivos": [],
-                "pontos_negativos": [relatorio_ast],
-                "feedback": f"Seu código não pôde ser avaliado. Erro estrutural grave: {relatorio_ast}"
-            }
+    def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None, linguagem="python"):
+        # Filtro Inteligente - O AST só opera se a linguagem for Python
+        if linguagem.lower() == "python":
+            config_ast = rubrica.get("configuracao_ast", {})
+            relatorio_ast = self._analise_estatica_dinamica(codigo_aluno, config_ast)
+            
+            if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
+                print(f">>> BLOQUEIO AST: {relatorio_ast}")
+                return {
+                    "raciocinio": f"O código foi rejeitado automaticamente pela análise estática. Motivo: {relatorio_ast}",
+                    "nota_final": 0.0,
+                    "pontos_positivos": [],
+                    "pontos_negativos": [relatorio_ast],
+                    "feedback": f"Seu código não pôde ser avaliado. Erro estrutural grave: {relatorio_ast}"
+                }
 
-        # NOVO: Montagem dinâmica dos exemplos no prompt.
         texto_exemplos = ""
         if exemplos:
             texto_exemplos = "### EXEMPLOS DE AVALIAÇÃO (Siga estritamente este padrão para definir notas e tom de feedback):\n"
@@ -90,7 +92,6 @@ class AvaliadorIA:
                 texto_exemplos += f"Sua Resposta Esperada (JSON):\n{json.dumps(dados['saida_esperada'], indent=2, ensure_ascii=False)}\n"
                 texto_exemplos += "-" * 40 + "\n"
        
-        # O prompt agora engloba a variável texto_exemplos
         prompt = f"""
 Você é um professor universitário de programação avaliando o código de um aluno.
 Sua única função é ler o código, analisá-lo com base no enunciado e retornar ESTRITAMENTE um objeto JSON válido.
@@ -127,7 +128,15 @@ Sua única função é ler o código, analisá-lo com base no enunciado e retorn
             resposta = requests.post(self.url_ollama, json=payload)
             resposta.raise_for_status() 
             texto_gerado = resposta.json().get("response", "")
-            return json.loads(texto_gerado.strip())
+            
+            # Sanitizador Rigoroso de JSON via Regex
+            match = re.search(r'\{.*\}', texto_gerado, re.DOTALL)
+            if match:
+                texto_limpo = match.group(0)
+            else:
+                texto_limpo = texto_gerado
+                
+            return json.loads(texto_limpo.strip())
             
         except requests.exceptions.RequestException as e:
             return {

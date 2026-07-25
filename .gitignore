@@ -26,3 +26,6 @@ Relatorio_Notas_Turma.csv
 
 # (Opcional) Ignora a pasta com os códigos dos alunos caso você não queira subir provas reais pro GitHub.
 pasta_alunos/
+
+# Ignora os artefatos de avaliacao gerados pelo motor da IA
+correcoes/
