@@ -1,7 +1,7 @@
 import json
-import ast
 import re
 import requests # Para se comunicar com o Ollama via rede.
+from analisadores import AnalisadorPython
 
 class AvaliadorIA:
     def __init__(self, nome_modelo):
@@ -9,68 +9,12 @@ class AvaliadorIA:
         self.modelo = nome_modelo 
         self.url_ollama = "http://localhost:11434/api/generate" 
 
-    def _verificar_loops(self, tree):
-        violacoes = []
-        for node in ast.walk(tree):
-            if isinstance(node, ast.While): violacoes.append("Uso de laço 'WHILE'")
-            if isinstance(node, ast.For): violacoes.append("Uso de laço 'FOR'")
-        return violacoes
-
-    def _verificar_recursao(self, tree):
-        nomes_funcoes = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-        for node in ast.walk(tree):
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
-                if node.func.id in nomes_funcoes: return [] 
-        return []
-
-    def _verificar_funcoes_prontas(self, tree, lista_proibida):
-        violacoes = []
-        for node in ast.walk(tree):
-            nome = None
-            if isinstance(node, ast.Call):
-                if isinstance(node.func, ast.Name): nome = node.func.id
-                elif isinstance(node.func, ast.Attribute): nome = node.func.attr
-            if nome and nome in lista_proibida:
-                violacoes.append(f"Uso da função proibida '{nome}()'")
-        return violacoes
-
-    def _analise_estatica_dinamica(self, codigo, config):
-        try:
-            tree = ast.parse(codigo)
-            relatorio_erros = []
-
-            if config.get("proibir_loops", False):
-                erros = self._verificar_loops(tree)
-                if erros: relatorio_erros.extend(erros)
-
-            proibidas = config.get("proibir_funcoes_prontas", [])
-            if proibidas:
-                erros = self._verificar_funcoes_prontas(tree, proibidas)
-                if erros: relatorio_erros.extend(erros)
-
-            if config.get("proibir_recursao", False):
-                nomes_funcoes = [n.name for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]
-                recursivo = False
-                for node in ast.walk(tree):
-                    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
-                        if node.func.id in nomes_funcoes: recursivo = True
-                if recursivo: relatorio_erros.append("Uso de Recursividade")
-
-            if not relatorio_erros:
-                return "SUCESSO"
-            
-            return "VIOLAÇÕES DETECTADAS: " + ", ".join(set(relatorio_erros))
-
-        except SyntaxError:
-            return "ERRO CRÍTICO: Código com erro de sintaxe (não compila)."
-        except Exception as e:
-            return f"ERRO NO ANALISADOR: {str(e)}"
-
     def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None, linguagem="python"):
-        # Filtro Inteligente - O AST só opera se a linguagem for Python
+        # Filtro inteligente: o Analisador chama o Analisador correspondente à linguagem.
         if linguagem.lower() == "python":
+            analisador = AnalisadorPython()
             config_ast = rubrica.get("configuracao_ast", {})
-            relatorio_ast = self._analise_estatica_dinamica(codigo_aluno, config_ast)
+            relatorio_ast = analisador.analisar(codigo_aluno, config_ast)
             
             if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
                 print(f">>> BLOQUEIO AST: {relatorio_ast}")
