@@ -1,0 +1,1 @@
+Crie uma variável temperatura_celsius com um valor numérico. Calcule a conversão desse valor para Fahrenheit usando a fórmula: (celsius * 1.8) + 32 e guarde em uma nova variável. Se a temperatura em Fahrenheit for maior que 100, exiba "Alerta de calor". Se não for, exiba "Temperatura normal".

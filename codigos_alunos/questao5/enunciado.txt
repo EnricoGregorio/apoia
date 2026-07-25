@@ -1,0 +1,1 @@
+Um sistema de vendas dá desconto para compras grandes. Crie uma variável valor_compra com um valor de sua escolha. Se o valor da compra for maior que 150, aplique um desconto de 10% (multiplique por 0.10, subtraia do original) e exiba "Compra com desconto: [valor]". Senão, exiba "Valor normal: [valor]".

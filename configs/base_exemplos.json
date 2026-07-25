@@ -1,0 +1,131 @@
+{
+  "questao_1": {
+    "enunciado": "Você está desenvolvendo a lógica de pontuação de um jogo. Crie duas variáveis: moedas_coletadas e monstros_derrotados. Sabendo que cada moeda vale 10 pontos e cada monstro vale 50 pontos, crie uma variável pontuacao_total que calcule o valor final. Ao final, imprima o valor da pontuação total.",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\nprint(\"A pontuação total é: \", pontuacao_total)",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 10.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = (moedas_coletadas + monstros_derrotados) * 60\nprint(\"A pontuação total é: \", pontuacao_total)",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 4.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\npontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\nprint(\"A pontuação total é: \" pontuacao_total)",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 0.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_outro_erro": {
+        "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = sum([moedas_coletadas * 10, monstros_derrotados * 50])\nprint(\"A pontuação total é: \", pontuacao_total)",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 5.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao1.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint moedas_coletadas = 12;\n\t\tint monstros_derrotados = 3;\n\t\t\n\t\tint pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50;\n\t\t\n\t\tSystem.out.println(\"A pontuação total é: \" + pontuacao_total);\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 10.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao1.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n        \n        int pontuacao_total = (moedas_coletadas + monstros_derrotados) * 60;\n        \n        System.out.println(\"A pontuação total é: \" + pontuacao_total);\n    }\n}",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 4.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao1.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n        int pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50;\n        \n        System.out.println(\"A pontuação total é: \" pontuacao_total);\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 0.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_outro_erro": {
+        "codigo": "package Questao1.java;\n\nimport java.util.Arrays;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n\n        int pontuacao_total = Arrays.stream(new int[]{moedas_coletadas * 10, monstros_derrotados * 50}).sum();\n        \n        System.out.println(\"A pontuação total é: \" + pontuacao_total);\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 5.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\t\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\t\n\t\tinteiro pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t\t\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 10.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\t\n\t\tinteiro pontuacao_total = (moedas_coletadas + monstros_derrotados) * 60\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 4.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro moedas_coletadas = 12\n\t\tinteiro monstros_derrotados = 3\n\t\tinteiro pontuacao_total = moedas_coletadas * 10 + monstros_derrotados * 50\n\t\t\n\t\tescreva(\"A pontuação total é: \" pontuacao_total)\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 0.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      },
+      "exemplo_outro_erro": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro valores[2] = {12 * 10, 3 * 50}\n\t\tinteiro pontuacao_total = valores[0] + valores[1]\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "[PREENCHER: Ação do aluno + Impacto técnico + Justificativa (Em 3ª pessoa)]",
+          "nota_final": 5.0,
+          "pontos_positivos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "pontos_negativos": ["[PREENCHER: Substantivo + Contexto Técnico]"],
+          "feedback": "[PREENCHER: Reconhecimento do esforço + Apontamento técnico + Dica de resolução (Em 2ª pessoa)]"
+        }
+      }
+    }
+  }
+}

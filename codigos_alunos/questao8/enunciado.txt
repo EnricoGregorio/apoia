@@ -1,0 +1,1 @@
+Em um sistema de posto de saúde, precisamos classificar o encaminhamento com base nos dias de sintomas. Crie uma variável dias_com_sintomas. Se o paciente estiver com sintomas há mais de 14 dias, o sistema deve exibir "Atenção: Encaminhar para exames laboratoriais detalhados". Senão, deve exibir "Encaminhar para consulta médica padrão".

@@ -1,0 +1,1 @@
+Você precisa implementar uma trava de segurança básica. Crie uma variável tentativas_falhas com o valor 4 e uma variável limite_tentativas com o valor 3. Escreva uma estrutura condicional que verifique a situação: se as tentativas falhas forem estritamente maiores que o limite, exiba "Conta bloqueada por segurança". Senão, exiba "Acesso liberado para nova tentativa".

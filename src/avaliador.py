@@ -65,7 +65,7 @@ class AvaliadorIA:
         except Exception as e:
             return f"ERRO NO ANALISADOR: {str(e)}"
 
-    def avaliar(self, enunciado, rubrica, codigo_aluno):
+    def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None):
         config_ast = rubrica.get("configuracao_ast", {})
         relatorio_ast = self._analise_estatica_dinamica(codigo_aluno, config_ast)
         
@@ -78,16 +78,22 @@ class AvaliadorIA:
                 "pontos_negativos": [relatorio_ast],
                 "feedback": f"Seu código não pôde ser avaliado. Erro estrutural grave: {relatorio_ast}"
             }
+
+        # NOVO: Montagem dinâmica dos exemplos no prompt.
+        texto_exemplos = ""
+        if exemplos:
+            texto_exemplos = "### EXEMPLOS DE AVALIAÇÃO (Siga estritamente este padrão para definir notas e tom de feedback):\n"
+            for chave, dados in exemplos.items():
+                titulo = chave.replace('_', ' ').upper()
+                texto_exemplos += f"\n[{titulo}]\n"
+                texto_exemplos += f"Código do Aluno:\n{dados['codigo']}\n"
+                texto_exemplos += f"Sua Resposta Esperada (JSON):\n{json.dumps(dados['saida_esperada'], indent=2, ensure_ascii=False)}\n"
+                texto_exemplos += "-" * 40 + "\n"
        
+        # O prompt agora engloba a variável texto_exemplos
         prompt = f"""
 Você é um professor universitário de programação avaliando o código de um aluno.
 Sua única função é ler o código, analisá-lo com base no enunciado e retornar ESTRITAMENTE um objeto JSON válido.
-
-### ENUNCIADO DO PROBLEMA:
-{enunciado}
-
-### CÓDIGO DO ALUNO:
-{codigo_aluno}
 
 ### INSTRUÇÕES DE AVALIAÇÃO:
 1. Se a lógica estiver correta e resolver o problema: Nota 10.
@@ -95,17 +101,17 @@ Sua única função é ler o código, analisá-lo com base no enunciado e retorn
 3. Se fugir do tema (ex: fez a média em vez de ordenação): Nota 0.
 4. Escreva o 'feedback' dirigindo-se diretamente ao aluno (ex: "Seu código falhou porque...").
 
-### FORMATO DE RESPOSTA OBRIGATÓRIO (Somente JSON puro, sem formatação markdown):
-{{
-  "raciocinio": "Texto explicando a análise técnica",
-  "nota_final": 0.0,
-  "pontos_positivos": ["Lista de acertos"],
-  "pontos_negativos": ["Lista de erros"],
-  "feedback": "Feedback pedagógico"
-}}
+{texto_exemplos}
+
+### AGORA É A SUA VEZ:
+### ENUNCIADO DO PROBLEMA:
+{enunciado}
+
+### CÓDIGO DO ALUNO A SER AVALIADO:
+{codigo_aluno}
 """
         
-        print(f">>> ESTRUTURA OK. Enviando código para a IA (Ollama)...")
+        print(f">>> ESTRUTURA OK. Enviando código e exemplos para a IA (Ollama)...")
         
         payload = {
             "model": self.modelo,
