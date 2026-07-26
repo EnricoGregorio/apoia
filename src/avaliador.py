@@ -1,7 +1,7 @@
 import json
 import re
 import requests # Para se comunicar com o Ollama via rede.
-from analisadores import AnalisadorPython
+from analisadores import AnalisadorPython, AnalisadorJava
 
 class AvaliadorIA:
     def __init__(self, nome_modelo):
@@ -10,9 +10,15 @@ class AvaliadorIA:
         self.url_ollama = "http://localhost:11434/api/generate" 
 
     def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None, linguagem="python"):
-        # Filtro inteligente: o Analisador chama o Analisador correspondente à linguagem.
+        # Filtro inteligente: o Analisador chama o modelo analisador correspondente à linguagem.
+        analisador = None
         if linguagem.lower() == "python":
             analisador = AnalisadorPython()
+        elif linguagem.lower() == "java":
+            analisador = AnalisadorJava()
+
+        # Se existir um analisador para a lingugagem, ele atua como porteiro.
+        if analisador:
             config_ast = rubrica.get("configuracao_ast", {})
             relatorio_ast = analisador.analisar(codigo_aluno, config_ast)
             

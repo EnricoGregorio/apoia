@@ -6,6 +6,8 @@
     "proibir_loops": false, 
     "proibir_recursao": false,
     "proibir_funcoes_prontas": [],
-    "exigir_tipagem": false
+    "exigir_tipagem": false,
+    "proibir_importacoes": true,
+    "proibir_condicionais": false
   }
 }
