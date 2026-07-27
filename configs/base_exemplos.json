@@ -483,5 +483,1059 @@
         }
       }
     }
+  },
+  "questao4": {
+    "enunciado": "Você precisa implementar uma trava de segurança básica. Crie uma variável tentativas_falhas com o valor 4 e uma variável limite_tentativas com o valor 3. Escreva uma estrutura condicional que verifique a situação: se as tentativas falhas forem estritamente maiores que o limite, exiba \"Conta bloqueada por segurança\". Senão, exiba \"Acesso liberado para nova tentativa\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "tentativas_falhas = 4\nlimite_tentativas = 3\n\nif tentativas_falhas > limite_tentativas:\n\tprint(\"Conta bloqueada por segurança\")\nelse:\n\tprint(\"Acesso liberado para nova tentativa\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou as variáveis corretamente e aplicou o operador relacional de maioridade estrita, estruturando o bloco condicional de forma adequada e limpa ao escopo.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração correta de variáveis numéricas",
+            "Uso apropriado do operador relacional maior que (>)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você compreendeu perfeitamente a lógica de validação de tentativas e utilizou a estrutura condicional if/else de forma impecável na sintaxe do Python."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "tentativas_falhas = 4\nlimite_tentativas = 3\n\nif tentativas_falhas <= limite_tentativas:\n    print(\"Conta bloqueada por segurança\")\nelse:\n    print(\"Acesso liberado para nova tentativa\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno inverteu a lógica relacional ao utilizar o operador de menor ou igual (<=) para a condição de bloqueio, o que causaria falsos positivos no sistema de segurança imaginário.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Estruturação sintática dos blocos correta",
+            "Declaração adequada de variáveis"
+          ],
+          "pontos_negativos": [
+            "Inversão da lógica relacional com o operador menor ou igual (<=)"
+          ],
+          "feedback": "A sua estrutura de código está muito bem montada! No entanto, verifique o seu operador matemático. Ao usar `<=`, o sistema bloqueará a conta mesmo quando o usuário ainda tiver tentativas válidas. Troque para o operador estritamente maior `>`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "tentativas_falhas = 4\nlimite_tentativas = 3\n\nif tentativas_falhas > limite_tentativas:\n    print(\"Conta bloqueada por segurança)\nelse:\n    print(\"Acesso liberado para nova tentativa\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno implementou a lógica perfeitamente, mas omitiu as aspas de fechamento na string da primeira função print, o que gera um erro léxico (SyntaxError) e impede a execução do script.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica de validação relacional perfeitamente construída"
+          ],
+          "pontos_negativos": [
+            "Omissão de aspas de fechamento na string de exibição"
+          ],
+          "feedback": "Sua lógica condicional está corretíssima! O único detalhe é que faltou fechar as aspas na primeira mensagem do comando `print`. No Python, cadeias de texto precisam obrigatoriamente ter aspas de abertura e de fechamento."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "tentativas_falhas = 4\nlimite_tentativas = 3\n\nassert tentativas_falhas <= limite_tentativas, \"Conta bloqueada por segurança\"\nprint(\"Acesso liberado para nova tentativa\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou uma declaração de asserção para forçar a parada do código e simular o bloqueio, desviando-se do objetivo didático de aplicar o controle de fluxo com o bloco if/else tradicional.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento avançado em validações com ferramentas de teste"
+          ],
+          "pontos_negativos": [
+            "Fuga do escopo didático exigido (aplicação de if/else)"
+          ],
+          "feedback": "É muito bom ver que você conhece ferramentas avançadas como o `assert` do Python! Porém, o objetivo didático desta atividade específica é praticar o fluxo de controle tradicional. Tente reescrever a validação utilizando os blocos clássicos `if` e `else`."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao4.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint tentativas_falhas = 4;\n\t\tint limite_tentativas = 3;\n\t\t\n\t\tif (tentativas_falhas > limite_tentativas) {\n\t\t\tSystem.out.println(\"Conta bloqueada por segurança\");\n\t\t} else {\n\t\t\tSystem.out.println(\"Acesso liberado para nova tentativa\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno tipou corretamente as variáveis numéricas e estruturou o bloco de decisão utilizando a sintaxe adequada e o operador relacional esperado para a trava de segurança.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Tipagem rigorosa e correta de variáveis inteiras",
+            "Aplicação exata da sintaxe condicional em Java"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! A sua declaração de dados está precisa e o bloco condicional foi construído seguindo fielmente as regras rígidas de sintaxe da linguagem Java. O sistema funcionaria com perfeição!"
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao4.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int tentativas_falhas = 4;\n        int limite_tentativas = 3;\n        \n        if (tentativas_falhas <= limite_tentativas) {\n            System.out.println(\"Conta bloqueada por segurança\");\n        } else {\n            System.out.println(\"Acesso liberado para nova tentativa\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno dominou a sintaxe e a tipagem, mas cometeu uma falha semântica ao inverter o operador de verificação na expressão booleana, comprometendo a regra de negócio central.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe de controle e declaração de escopo irretocáveis"
+          ],
+          "pontos_negativos": [
+            "Aplicação incorreta do operador relacional menor ou igual (<=)"
+          ],
+          "feedback": "Você demonstrou ótimo domínio da formatação em Java! Mas preste atenção na lógica matemática: se você usar o `<=` para bloquear, o usuário será barrado antes mesmo de atingir o limite. Altere a condição para estritamente maior `>`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao4.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int tentativas_falhas = 4;\n        int limite_tentativas = 3;\n        \n        if (tentativas_falhas > limite_tentativas) {\n            System.out.println(\"Conta bloqueada por segurança);\n        } else {\n            System.out.println(\"Acesso liberado para nova tentativa\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu o raciocínio e a estrutura do código perfeitamente, porém a falta de aspas duplas de fechamento na primeira string resulta em um erro fatal no compilador Java.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Raciocínio lógico e condicional perfeitamente alinhados ao escopo"
+          ],
+          "pontos_negativos": [
+            "Ausência de aspas de fechamento delimitando a cadeia de caracteres"
+          ],
+          "feedback": "A sua lógica está sensacional para resolver o problema! Só faltou um pequeno detalhe de sintaxe: fechar as aspas da mensagem \"Conta bloqueada por segurança\". No compilador do Java, qualquer omissão de pontuação ou caractere trava a execução por completo."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao4.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int tentativas_falhas = 4;\n        int limite_tentativas = 3;\n        \n        assert tentativas_falhas <= limite_tentativas : \"Conta bloqueada por segurança\";\n        \n        System.out.println(\"Acesso liberado para nova tentativa\");\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno empregou diretivas de validação nativas da linguagem (assert), atingindo o encerramento do programa por falha, mas ignorou completamente o ensino estrutural de condicionais e as mensagens controladas.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Aplicação correta de testes de contrato e asserções diretas"
+          ],
+          "pontos_negativos": [
+            "Substituição do bloco condicional padrão por ferramenta de asserção de teste"
+          ],
+          "feedback": "Genial a sua ideia de usar o mecanismo `assert` do Java para simular o bloqueio do sistema! Entretanto, como o foco desta unidade didática é fixar a construção manual de estruturas condicionais, peço que você refaça o código utilizando os blocos `if/else` e a função `System.out.println`."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro tentativas_falhas = 4\n\t\tinteiro limite_tentativas = 3\n\t\t\n\t\tse (tentativas_falhas > limite_tentativas) {\n\t\t\tescreva(\"Conta bloqueada por segurança\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso liberado para nova tentativa\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante declarou os tipos primitivos com precisão, estruturou adequadamente os comandos e formulou o desvio condicional respeitando inteiramente a sintaxe e a lógica exigidas pelo pseudocódigo.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Atribuição correta de variáveis do tipo inteiro",
+            "Uso perfeito da estrutura relacional nos laços se e senao"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Parabéns! Você declarou perfeitamente as variáveis em Portugol e elaborou a condição matemática de segurança exatamente como o algoritmo de validação exige."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro tentativas_falhas = 4\n\t\tinteiro limite_tentativas = 3\n\t\t\n\t\tse (tentativas_falhas <= limite_tentativas) {\n\t\t\tescreva(\"Conta bloqueada por segurança\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso liberado para nova tentativa\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante estruturou o código com perfeição, mas aplicou o operador lógico oposto ao exigido pelo enunciado, criando uma trava defeituosa que penaliza o usuário validado.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Excelente formatação e clareza estrutural do algoritmo",
+            "Compreensão adequada dos tipos de dados numéricos"
+          ],
+          "pontos_negativos": [
+            "Utilização do operador de menor ou igual em verificação de excesso"
+          ],
+          "feedback": "O seu código em Portugol está incrivelmente organizado e bonito! Apenas corrija um detalhe de lógica matemática: a condição para acionar o bloqueio de segurança deve atuar somente se as tentativas falhas ultrapassarem o limite, portanto utilize o operador estritamente maior `>`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro tentativas_falhas = 4\n\t\tinteiro limite_tentativas = 3\n\t\t\n\t\tse (tentativas_falhas > limite_tentativas) {\n\t\t\tescreva(\"Conta bloqueada por segurança\")\n\t\t} senão {\n\t\t\tescreva(\"Acesso liberado para nova tentativa\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno concebeu toda a lógica matemática sem defeitos, mas utilizou acentuação gráfica indevida na palavra reservada condicional ('senão'), o que causa erro de parsing no Portugol Studio.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Lógica relacional interpretada com sucesso"],
+          "pontos_negativos": [
+            "Uso de acentuação gráfica (til) em palavra reservada da linguagem"
+          ],
+          "feedback": "A sua lógica está perfeita e atende exatamente aos requisitos do teste! Mas nunca se esqueça desta regra valiosa: nas plataformas e linguagens de programação, não podemos usar pontuações ou acentos em palavras-chave do sistema. Substitua `senão` por `senao` e você terá nota máxima."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro tentativas_falhas = 4\n\t\t\n\t\tescolha (tentativas_falhas) {\n\t\t\tcaso 1:\n\t\t\tcaso 2:\n\t\t\tcaso 3:\n\t\t\t\tescreva(\"Acesso liberado para nova tentativa\")\n\t\t\t\tpare\n\t\t\tcaso contrario:\n\t\t\t\tescreva(\"Conta bloqueada por segurança\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou uma estrutura de desvio múltiplo listando fixamente as possibilidades contáveis numéricas, ignorando a dependência da variável de limite requerida pelo exercício e minando a escalabilidade.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento consolidado em estruturas alternativas (escolha/caso)"
+          ],
+          "pontos_negativos": [
+            "Remoção da variável de limite e enumeração manual hardcoded não escalável"
+          ],
+          "feedback": "Você fez o uso da sintaxe `escolha/caso` com muita criatividade! Porém, para validações matemáticas de intervalo ('maior que', 'menor que'), essa solução não é adequada. Se o limite de tentativas fosse 1000, você precisaria listar 1000 casos diferentes no seu código. O uso ideal para estes comparativos matemáticos é sempre o bloco relacional clássico `se/senao`."
+        }
+      }
+    }
+  },
+  "questao5": {
+    "enunciado": "Um sistema de vendas dá desconto para compras grandes. Crie uma variável valor_compra com um valor de sua escolha. Se o valor da compra for maior que 150, aplique um desconto de 10% (multiplique por 0.10, subtraia do original) e exiba \"Compra com desconto: [valor]\". Senão, exiba \"Valor normal: [valor]\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "valor_compra = 200.0\n\nif valor_compra > 150.0:\n\tvalor_com_desconto = valor_compra - valor_compra * 0.10\n\tprint(\"Compra com desconto: \", valor_com_desconto)\nelse:\n\tprint(\"Valor normal: \", valor_compra)",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou o valor corretamente e implementou o cálculo do desconto seguindo a ordem de operações solicitada, exibindo os resultados condicionalmente de forma precisa.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo de desconto conforme a regra exigida",
+            "Uso correto da estrutura if/else"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você seguiu perfeitamente a fórmula de desconto solicitada e estruturou o bloco condicional de forma impecável."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "valor_compra = 200.0\n\nif valor_compra > 150.0:\n    valor_com_desconto = valor_compra * 0.10\n    print(\"Compra com desconto: \", valor_com_desconto)\nelse:\n    print(\"Valor normal: \", valor_compra)",
+        "saida_esperada": {
+          "raciocinio": "O aluno calculou apenas o valor do desconto (10%), mas esqueceu de subtraí-lo do total da compra, resultando na exibição de um valor incorreto ao cliente.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Compreensão da estrutura condicional",
+            "Cálculo correto do percentual isolado"
+          ],
+          "pontos_negativos": [
+            "Omissão da subtração do desconto no valor total"
+          ],
+          "feedback": "Sua estrutura condicional está muito boa! No entanto, observe o cálculo: ao fazer apenas `valor_compra * 0.10`, você está cobrando do cliente apenas o valor do desconto. Lembre-se de subtrair esse valor do total original."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "valor_compra = 200,0\n\nif valor_compra > 150.0:\n    valor_com_desconto = valor_compra - valor_compra * 0.10\n    print(\"Compra com desconto: \", valor_com_desconto)\nelse:\n    print(\"Valor normal: \", valor_compra)",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou uma vírgula para separar as casas decimais na declaração da variável numérica, o que no Python cria uma tupla e gera um erro de tipagem no cálculo subsequente.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica matemática e estrutural perfeitamente elaboradas"
+          ],
+          "pontos_negativos": [
+            "Uso de vírgula em vez de ponto na declaração de valor flutuante (float)"
+          ],
+          "feedback": "A sua lógica de cálculo está perfeita! Porém, cuidado com a sintaxe: na programação, utilizamos o ponto (`.`) para separar casas decimais, e não a vírgula. Troque `200,0` por `200.0`."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "valor_compra = 200.0\n\nif valor_compra > 150.0:\n    valor_com_desconto = valor_compra * 0.90\n    print(\"Compra com desconto: \", valor_com_desconto)\nelse:\n    print(\"Valor normal: \", valor_compra)",
+        "saida_esperada": {
+          "raciocinio": "O aluno obteve o resultado final multiplicando o valor diretamente por 0.90, alcançando o preço correto, porém ignorando a instrução explícita do enunciado de realizar o cálculo passo a passo.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento avançado de matemática financeira aplicada",
+            "Código funcional e otimizado"
+          ],
+          "pontos_negativos": [
+            "Desobediência à etapa de subtração explícita solicitada no enunciado"
+          ],
+          "feedback": "É muito bom ver que você domina a matemática e sabe que multiplicar por 0.90 aplica um desconto de 10% de forma direta! Mas, para fins didáticos, o exercício pediu a estrutura explícita de cálculo e subtração passo a passo. Tente refazer seguindo essa instrução."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao5.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tdouble valor_compra = 200.0;\n\t\t\n\t\tif (valor_compra > 150.0) {\n\t\t\tdouble valor_com_desconto = valor_compra - valor_compra * 0.10;\n\t\t\tSystem.out.println(\"Compra com desconto: \" + valor_com_desconto);\n\t\t} else {\n\t\t\tSystem.out.println(\"Valor normal: \" + valor_compra);\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou adequadamente o tipo primitivo double, implementou a lógica de desconto de forma exata e respeitou perfeitamente a sintaxe condicional da linguagem Java.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Tipagem rigorosa da variável flutuante (double)",
+            "Estruturação sintática e lógica perfeitas"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! Você tipou os dados corretamente e desenvolveu a lógica matemática do desconto respeitando todas as regras rígidas de sintaxe do Java."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao5.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        double valor_compra = 200.0;\n        \n        if (valor_compra > 150.0) {\n            double valor_com_desconto = valor_compra * 0.10;\n            System.out.println(\"Compra com desconto: \" + valor_com_desconto);\n        } else {\n            System.out.println(\"Valor normal: \" + valor_compra);\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno estruturou o código corretamente com o tipo double, mas falhou na regra de negócios ao atribuir apenas a porcentagem de desconto como valor final, esquecendo a subtração.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe do Java aplicada corretamente",
+            "Atribuição adequada do tipo numérico fracionário"
+          ],
+          "pontos_negativos": [
+            "Cálculo incompleto sem a etapa de subtração do valor original"
+          ],
+          "feedback": "Seu código compila perfeitamente e a sintaxe está ótima. Contudo, há um erro na regra de negócios: você apenas calculou quanto valem os 10%. Para que o cliente pague o preço justo, é preciso subtrair esse valor do total da compra original."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao5.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        double valor_compra = 200,0;\n        \n        if (valor_compra > 150.0) {\n            double valor_com_desconto = valor_compra - valor_compra * 0.10;\n            System.out.println(\"Compra com desconto: \" + valor_com_desconto);\n        } else {\n            System.out.println(\"Valor normal: \" + valor_compra);\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno digitou uma vírgula em vez de ponto na atribuição do valor decimal da variável double, causando um erro léxico severo que impede a compilação do código em Java.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Concepção correta da lógica de negócios e condicionais"
+          ],
+          "pontos_negativos": [
+            "Uso indevido de vírgula em um literal numérico de ponto flutuante"
+          ],
+          "feedback": "O raciocínio do seu algoritmo está excelente! Mas o compilador do Java não entende a vírgula como separador decimal. Substitua `200,0` por `200.0` para que seu código possa ser executado sem erros."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao5.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        double valor_compra = 200.0;\n        \n        if (valor_compra > 150.0) {\n            double valor_com_desconto = valor_compra * 0.90;\n            System.out.println(\"Compra com desconto: \" + valor_com_desconto);\n        } else {\n            System.out.println(\"Valor normal: \" + valor_compra);\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno resumiu a operação multiplicando o valor por 0.90. Embora o preço com desconto gerado esteja correto, a prática contorna o objetivo pedagógico de montar a expressão matemática completa.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Otimização válida da expressão matemática financeira",
+            "Declaração e uso corretos das variáveis do tipo double"
+          ],
+          "pontos_negativos": [
+            "Não aplicação da subtração explícita solicitada no enunciado da atividade"
+          ],
+          "feedback": "Excelente raciocínio matemático! Multiplicar diretamente por 0.90 é uma ótima prática de simplificação. Entretanto, a atividade exige o treinamento da expressão algorítmica completa (calcular os 10% e então subtrair do original). Refaça a expressão focando no escopo detalhado!"
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\treal valor_compra = 200.0\n\t\t\n\t\tse (valor_compra > 150.0) {\n\t\t\treal valor_com_desconto = valor_compra - valor_compra * 0.10\n\t\t\tescreva(\"Compra com desconto: \", valor_com_desconto)\n\t\t} senao {\n\t\t\tescreva(\"Valor normal: \", valor_compra)\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou o tipo primitivo de forma correta e organizou a estrutura condicional executando a expressão matemática de cálculo e subtração exatamente como orientava o exercício.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Uso correto do tipo primitivo real para valores monetários",
+            "Aplicação da fórmula matemática e relacional completas"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Parabéns! Você declarou perfeitamente as variáveis em Portugol e elaborou a condição de desconto aliada à matemática da fórmula exatamente como o enunciado orientou."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\treal valor_compra = 200.0\n\t\t\n\t\tse (valor_compra > 150.0) {\n\t\t\treal valor_com_desconto = valor_compra * 0.10\n\t\t\tescreva(\"Compra com desconto: \", valor_com_desconto)\n\t\t} senao {\n\t\t\tescreva(\"Valor normal: \", valor_compra)\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno desenvolveu bem o algoritmo central, mas omitiu a etapa de subtração na regra de negócio, armazenando na variável final apenas o equivalente aos 10% calculados.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe dos comandos condicionais se e senao formatada com exatidão"
+          ],
+          "pontos_negativos": [
+            "Falha na implementação da regra de subtração estipulada para o valor final"
+          ],
+          "feedback": "O seu algoritmo está muito bem estruturado, mas escorregou na lógica final do desconto. Se o cliente fizer uma compra de R$200.00, do jeito que está, a cobrança será de apenas R$20.00 em vez de R$180.00. Não se esqueça de subtrair o desconto calculado do valor total!"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\treal valor da compra = 200.0\n\t\t\n\t\tse (valor da compra > 150.0) {\n\t\t\treal valor_com_desconto = valor da compra - (valor da compra * 0.10)\n\t\t\tescreva(\"Compra com desconto: \", valor_com_desconto)\n\t\t} senao {\n\t\t\tescreva(\"Valor normal: \", valor da compra)\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno tentou nomear a variável utilizando espaços em branco, o que viola frontalmente a regra de nomenclatura de identificadores em programação, impedindo a interpretação pelo Portugol.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica matemática e estruturas de fluxo perfeitamente desenhadas"
+          ],
+          "pontos_negativos": [
+            "Uso de espaços em branco na nomenclatura de variável (valor da compra)"
+          ],
+          "feedback": "A sua lógica de cálculo está impecável, mas cometemos um erro nas regras de variáveis. Em linguagens de programação, não podemos colocar espaços soltos nos nomes das variáveis. Tente usar um formato conectado, mudando `valor da compra` para `valor_compra`."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\treal valor_compra = 200.0\n\t\t\n\t\tse (valor_compra > 150.0) {\n\t\t\treal valor_com_desconto = valor_compra * 0.90\n\t\t\tescreva(\"Compra com desconto: \", valor_com_desconto)\n\t\t} senao {\n\t\t\tescreva(\"Valor normal: \", valor_compra)\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno encurtou a fórmula multiplicando o valor total por 0.90. Embora a saída numérica do algoritmo seja exata, a ausência da subtração explícita não atende à exigência didática de elaboração passo a passo.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento prático validado em lógica financeira simplificada"
+          ],
+          "pontos_negativos": [
+            "Substituição da lógica estendida solicitada por atalho multiplicativo"
+          ],
+          "feedback": "Foi muito inteligente usar um atalho matemático e multiplicar a variável diretamente por 0.90! Contudo, como o objetivo nesta atividade é praticar a formulação de expressões matemáticas completas em código, peço que você escreva o cálculo por extenso, subtraindo explicitamente o percentual do valor original."
+        }
+      }
+    }
+  },
+  "questao6": {
+    "enunciado": "Crie uma variável numero_secreto. Utilize o operador de módulo/resto da divisão (%) para verificar se o número é divisível por 2 de forma exata. Se o resto da divisão por 2 for igual a 0, exiba \"O número é Par\". Caso contrário, exiba \"O número é Ímpar\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "numero_secreto = 42\n\nif numero_secreto % 2 == 0:\n\tprint(\"O número é Par\")\nelse:\n\tprint(\"O número é Ímpar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou o operador de módulo corretamente para encontrar o resto da divisão por 2 e aplicou o operador de igualdade duplo para estruturar a condição com sucesso.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Uso correto do operador aritmético de módulo (%)",
+            "Aplicação exata do operador relacional de igualdade (==)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você demonstrou que entende perfeitamente como capturar o resto de uma divisão e construiu a estrutura if/else de forma impecável."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "numero_secreto = 42\n\nif numero_secreto / 2 == 0:\n    print(\"O número é Par\")\nelse:\n    print(\"O número é Ímpar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu a estrutura condicional perfeitamente, mas utilizou o operador de divisão comum (/) em vez do operador de módulo (%), avaliando o quociente em vez do resto da operação e quebrando a lógica de paridade.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Estruturação sintática correta do bloco condicional if/else"
+          ],
+          "pontos_negativos": [
+            "Substituição do operador de módulo (%) pelo operador de divisão linear (/)"
+          ],
+          "feedback": "A sua lógica estrutural está ótima, mas você usou o símbolo de divisão `/`. Isso retorna o resultado inteiro da conta. Para saber se um número é par, precisamos pegar o 'resto' da divisão matemática usando o operador de módulo `%`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "numero_secreto = 42\n\nif numero_secreto % 2 = 0:\n    print(\"O número é Par\")\nelse:\n    print(\"O número é Ímpar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno aplicou a matemática do módulo de forma exata, mas utilizou o operador de atribuição (=) em vez do operador relacional de igualdade (==) na expressão do if, gerando um erro de sintaxe que impede a execução.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Compreensão do uso matemático do operador de módulo para paridade"
+          ],
+          "pontos_negativos": [
+            "Uso de operador de atribuição (=) no lugar de verificação de igualdade (==)"
+          ],
+          "feedback": "Você acertou na matemática ao usar o `%`! Porém, no Python, um único sinal de igual `=` serve apenas para guardar valores em variáveis (atribuição). Para comparar se duas coisas são iguais dentro de um `if`, você deve obrigatoriamente usar dois sinais `==`."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "numero_secreto = 42\n\nif divmod(numero_secreto, 2)[1] == 0:\n    print(\"O número é Par\")\nelse:\n    print(\"O número é Ímpar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno alcançou o resultado esperado utilizando a função embutida divmod(), desviando-se do objetivo didático primordial de aplicar o operador aritmético de módulo (%) de forma explícita.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento avançado de funções embutidas (built-ins) do Python"
+          ],
+          "pontos_negativos": [
+            "Não utilização do operador aritmético exigido pelo escopo da atividade"
+          ],
+          "feedback": "Muito bacana ver que você conhece funções prontas poderosas como o `divmod`! No entanto, o objetivo desta atividade específica é treinar o uso direto dos operadores aritméticos fundamentais. Tente refazer o exercício utilizando o operador `%`."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao6.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint numero_secreto = 42;\n\t\t\n\t\tif (numero_secreto % 2 == 0) {\n\t\t\tSystem.out.println(\"O número é par\");\n\t\t} else {\n\t\t\tSystem.out.println(\"O número é ímpar\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno instanciou a variável corretamente e implementou o operador aritmético de módulo (%) para a verificação de paridade, respeitando a sintaxe rigorosa e o escopo do Java.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração correta de variável inteira",
+            "Uso exato do operador de módulo e comparação lógica"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Perfeito! Você estruturou muito bem o código Java, utilizando os tipos primitivos e os operadores relacionais e aritméticos exatamente como a linguagem exige."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao6.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int numero_secreto = 42;\n        \n        if (numero_secreto / 2 == 0) {\n            System.out.println(\"O número é par\");\n        } else {\n            System.out.println(\"O número é ímpar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu a estrutura do Java sem erros de compilação, mas falhou semanticamente ao buscar o quociente (/) em vez do resto da divisão (%), quebrando a regra de negócio central.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe da linguagem Java perfeitamente validada e compilável"
+          ],
+          "pontos_negativos": [
+            "Uso do operador de divisão (/) em vez do módulo (%) para verificar paridade"
+          ],
+          "feedback": "O seu código compila sem nenhum problema e a estrutura está correta! Mas há uma falha na regra matemática: o operador `/` divide o número de fato. Para descobrir se é par, precisamos analisar a sobra (resto) dessa divisão. Troque a barra `/` pelo símbolo `%`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao6.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int numero_secreto = 42;\n        \n        if (numero_secreto % 2 = 0) {\n            System.out.println(\"O número é par\");\n        } else {\n            System.out.println(\"O número é ímpar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno tentou fazer uma atribuição dentro da expressão booleana do bloco condicional usando um único igual (=), o que viola as regras de tipagem estrita do compilador Java e impede a execução.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Raciocínio matemático de paridade (módulo) empregado corretamente"
+          ],
+          "pontos_negativos": [
+            "Uso indevido do operador de atribuição (=) em operação de comparação (==)"
+          ],
+          "feedback": "Você escolheu a ferramenta matemática certa (o `%`)! Mas, no Java, o comando `if` exige uma comparação que retorne verdadeiro ou falso. Ao usar apenas um `=`, você está tentando atribuir o valor 0 dentro do if. Use `==` para fazer a comparação."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao6.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int numero_secreto = 42;\n        \n        if ((numero_secreto & 1) == 0) {\n            System.out.println(\"O número é par\");\n        } else {\n            System.out.println(\"O número é ímpar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno verificou o bit menos significativo da variável numérica usando um operador bit a bit (&), alcançando a lógica correta de paridade, mas contornando a exigência pedagógica do uso do módulo aritmético (%).",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Compreensão profunda de manipulação de bits e arquitetura de baixo nível"
+          ],
+          "pontos_negativos": [
+            "Substituição do operador aritmético exigido pelo uso de operador bitwise"
+          ],
+          "feedback": "Excelente sacada usar operadores bit a bit (`&`)! É sem dúvidas a forma computacional mais rápida de processar isso. Contudo, como o foco desta atividade é avaliar o domínio dos operadores aritméticos básicos de nível superior, refaça o código aplicando o operador matemático `%`."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro numero_secreto = 42\n\t\t\n\t\tse (numero_secreto % 2 == 0) {\n\t\t\tescreva(\"O número é par\")\n\t\t} senao {\n\t\t\tescreva(\"O número é ímpar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante desenvolveu a lógica matemática exigida através do operador de resto da divisão e organizou o fluxo condicional com precisão, seguindo a sintaxe adequada da linguagem.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Identificação correta da paridade via operador de resto (%)",
+            "Escrita perfeita da estrutura de decisão (se/senao)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! Você capturou o conceito de resto de divisão perfeitamente e formatou a condição de verificação com a sintaxe impecável do Portugol."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro numero_secreto = 42\n\t\t\n\t\tse (numero_secreto / 2 == 0) {\n\t\t\tescreva(\"O número é par\")\n\t\t} senao {\n\t\t\tescreva(\"O número é ímpar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno estruturou o bloco de forma coerente, contudo aplicou o operador de divisão linear (/) no lugar do módulo (%), avaliando o quociente em vez do resto e comprometendo o resultado.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Formatação visual e semântica de estruturas condicionais corretas"
+          ],
+          "pontos_negativos": [
+            "Confusão entre o operador de divisão linear (/) e o operador de resto (%)"
+          ],
+          "feedback": "O seu programa está com o esqueleto perfeito. O único detalhe é que o operador `/` nos dá o resultado da divisão em si. Para saber se um número é par, precisamos verificar o 'resto' que sobra da divisão por 2. Altere o `/` para o símbolo `%`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro numero_secreto = 42\n\t\t\n\t\tse (numero_secreto % 2 = 0) {\n\t\t\tescreva(\"O número é par\")\n\t\t} senao {\n\t\t\tescreva(\"O número é ímpar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno acertou a abordagem matemática através do operador de resto, mas equivocou-se ao colocar um único sinal de igual (=) na estrutura de verificação condicional, causando falha léxica imediata.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Escolha adequada da fórmula de módulo para verificação de paridade"
+          ],
+          "pontos_negativos": [
+            "Utilização de operador de atribuição (=) em vez do operador relacional (==)"
+          ],
+          "feedback": "O seu raciocínio matemático para descobrir números pares está corretíssimo! O erro aqui é apenas de digitação e sintaxe: no Portugol, para comparar dois valores dentro do comando `se`, usamos obrigatoriamente dois sinais de igual juntos `==`."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tinclua biblioteca Tipos --> t\n\tinclua biblioteca Texto --> txt\n\t\n\tfuncao inicio() {\n\t\tinteiro numero_secreto = 42\n\t\t\n\t\tcadeia num_texto = t.inteiro_para_cadeia(numero_secreto, 10)\n\t\tcaracter ultimo_digito = txt.obter_caracter(num_texto, txt.numero_caracteres(num_texto) - 1)\n\t\t\n\t\tse (ultimo_digito == '0' ou ultimo_digito == '2' ou ultimo_digito == '4' ou ultimo_digito == '6' ou ultimo_digito == '8') {\n\t\t\tescreva(\"O número é par\")\n\t\t} senao {\n\t\t\tescreva(\"O número é ímpar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno desenvolveu um algoritmo demasiadamente complexo de manipulação de cadeias e verificação de caracteres para analisar a terminação do número, ignorando completamente a solução direta e aritmética exigida no escopo.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Raciocínio algorítmico avançado",
+            "Domínio da manipulação de strings e bibliotecas externas"
+          ],
+          "pontos_negativos": [
+            "Desvio total da abordagem aritmética recomendada (operador de módulo)"
+          ],
+          "feedback": "A sua solução foi incrivelmente criativa e prova que você já domina bibliotecas e manipulação de textos! Mas atenção: o foco deste exercício é a matemática básica. Em vez de transformar o número em texto e analisar o último dígito, use simplesmente a matemática direta com o operador `%`. É muito mais rápido e eficiente."
+        }
+      }
+    }
+  },
+  "questao7": {
+    "enunciado": "Um script monitora o disco de um servidor. Crie a variável capacidade_total_gb (ex: 500) e espaco_ocupado_gb (ex: 420). Calcule qual é a porcentagem de espaço ocupado (dica: divida o ocupado pelo total e multiplique por 100). Se a porcentagem calculada for maior que 80, exiba \"Alerta Crítico: Armazenamento quase cheio\". Senão, exiba \"Status do armazenamento: Estável\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "capacidade_total_gb = 500\nespaco_ocupado_gb = 420\nporcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100\n\nif porcentagem_ocupada > 80:\n\tprint(\"Alerta Crítico: Armazenamento quase cheio\")\nelse:\n\tprint(\"Status do armazenamento: Estável\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno implementou a lógica de cálculo percentual seguindo a ordem correta dos operadores e estruturou o bloco de decisão condicional perfeitamente.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo exato da porcentagem de armazenamento",
+            "Estruturação adequada do bloco if/else"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você aplicou a fórmula matemática corretamente, guardou o resultado na variável esperada e utilizou a estrutura de decisão para exibir os alertas de forma impecável."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "capacidade_total_gb = 500\nespaco_ocupado_gb = 420\n\nporcentagem_ocupada = capacidade_total_gb / espaco_ocupado_gb * 100\n\nif porcentagem_ocupada > 80:\n    print(\"Alerta Crítico: Armazenamento quase cheio\")\nelse:\n    print(\"Status do armazenamento: Estável\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno inverteu a ordem da divisão no cálculo da porcentagem, dividindo a capacidade total pelo espaço ocupado, o que resulta em um valor incorreto para a validação do sistema.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Declaração correta de variáveis",
+            "Sintaxe do bloco condicional estruturada corretamente"
+          ],
+          "pontos_negativos": [
+            "Inversão dos operandos na fórmula de divisão percentual"
+          ],
+          "feedback": "A estrutura do seu código está ótima, mas preste atenção na matemática! Ao dividir o total pelo ocupado, a porcentagem gerada estará errada (maior que 100%). Para calcular a porcentagem ocupada, você deve sempre dividir a 'parte' (espaço ocupado) pelo 'todo' (capacidade total)."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "capacidade_total_gb = 500\nespaco_ocupado_gb = 420\nporcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100\n\nif porcentgem_ocupada > 80:\n    print(\"Alerta Crítico: Armazenamento quase cheio\")\nelse:\n    print(\"Status do armazenamento: Estável\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno cometeu um erro de digitação ao chamar a variável na condição do if, omitindo uma letra. Isso gera um erro de variável não definida (NameError) que impede a execução do script.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Fórmula de cálculo matemático perfeitamente montada"
+          ],
+          "pontos_negativos": [
+            "Erro de digitação na chamada da variável causando falha de referência"
+          ],
+          "feedback": "Sua lógica matemática e estrutural estão perfeitas! No entanto, o código vai quebrar porque você digitou o nome da variável errado no comando `if` (`porcentgem_ocupada` sem a letra 'a'). Em programação, os nomes das variáveis devem ser exatamente iguais aos declarados."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "capacidade_total_gb = 500\nespaco_ocupado_gb = 420\n\nif (espaco_ocupado_gb / capacidade_total_gb) > 0.8:\n    print(f\"O espaço ocupado é {espaco_ocupado_gb / capacidade_total_gb:.0%}. Alerta Crítico!\")\nelse:\n    print(\"Status do armazenamento: Estável\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno atingiu o objetivo ao comparar a fração decimal diretamente com 0.8 no bloco condicional, mas ignorou a instrução didática de criar uma variável e calcular a porcentagem baseada em 100.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Compreensão avançada de proporções decimais e formatação de strings",
+            "Código funcional e lógico"
+          ],
+          "pontos_negativos": [
+            "Omissão da variável intermediária de porcentagem exigida no enunciado"
+          ],
+          "feedback": "Foi muito inteligente da sua parte usar a proporção decimal (`0.8`) diretamente no `if` e usar f-strings! Contudo, o objetivo didático deste exercício era praticar a criação de variáveis intermediárias e o cálculo tradicional da porcentagem (multiplicando explicitamente por 100). Tente refazer seguindo os passos literais do enunciado."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao7.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint capacidade_total_gb = 500;\n\t\tint espaco_ocupado_gb = 420;\n\t\tint porcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100;\n\t\t\n\t\tif (porcentagem_ocupada > 80) {\n\t\t\tSystem.out.println(\"Alerta Crítico: Armazenamento quase cheio\");\n\t\t} else {\n\t\t\tSystem.out.println(\"Status do armazenamento: Estável\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou adequadamente as variáveis inteiras, implementou a fórmula sequencial exigida e respeitou a sintaxe rígida do Java para o bloco condicional.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração correta de variáveis tipadas",
+            "Estrutura condicional alinhada às regras da linguagem"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente! Você estruturou muito bem a lógica, criando as variáveis corretamente no Java e formulando a condicional de segurança exatamente como pedido."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao7.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int capacidade_total_gb = 500;\n        int espaco_ocupado_gb = 420;\n        \n        int porcentagem_ocupada = capacidade_total_gb / espaco_ocupado_gb * 100;\n        \n        if (porcentagem_ocupada > 80) {\n            System.out.println(\"Alerta Crítico: Armazenamento quase cheio\");\n        } else {\n            System.out.println(\"Status do armazenamento: Estável\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu a estrutura do Java sem erros de compilação, mas inverteu as variáveis na operação de divisão, falhando no cálculo de proporção e quebrando a regra de negócio.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe da linguagem e blocos de código perfeitos"
+          ],
+          "pontos_negativos": [
+            "Erro de lógica matemática na inversão do dividendo com o divisor"
+          ],
+          "feedback": "O seu código compila sem nenhum problema e a estrutura está correta! Mas há uma falha matemática fundamental: você dividiu a capacidade total pelo espaço ocupado. Na lógica de porcentagem, o espaço ocupado deve ser dividido pela capacidade total. Inverta a ordem e ficará perfeito!"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao7.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int capacidade_total_gb = 500;\n        int espaco_ocupado_gb = 420;\n        int porcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100;\n        \n        if (porcentgem_ocupada > 80) { \n            System.out.println(\"Alerta Crítico: Armazenamento quase cheio\");\n        } else {\n            System.out.println(\"Status do armazenamento: Estável\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno omitiu a letra 'a' no nome da variável ao realizar a validação lógica no if, o que provoca um erro de símbolo não encontrado (cannot find symbol) travando o compilador Java.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Raciocínio algorítmico e matemático excelentes"
+          ],
+          "pontos_negativos": [
+            "Erro de nomenclatura de variável inviabilizando a compilação"
+          ],
+          "feedback": "O seu algoritmo resolve o problema perfeitamente! O defeito é apenas um erro de digitação: você declarou `porcentagem_ocupada`, mas dentro do `if` digitou `porcentgem_ocupada`. O compilador do Java é extremamente rigoroso com nomes de variáveis. Corrija o nome e o código rodará liso."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao7.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        double capacidade_total_gb = 500.0;\n        double espaco_ocupado_gb = 420.0;\n        \n        if ((espaco_ocupado_gb / capacidade_total_gb) > 0.8) {\n            System.out.printf(\"Ocupado: %.0f%%. Alerta Crítico!\\n\", (espaco_ocupado_gb / capacidade_total_gb) * 100);\n        } else {\n            System.out.println(\"Status do armazenamento: Estável\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno converteu os dados para ponto flutuante e realizou a validação da proporção inline. A técnica funciona, mas burla a construção algorítmica linear e a extração em variáveis pedidas na atividade.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Compreensão de cast implícito para decimais",
+            "Uso adequado de formatação de saída (printf)"
+          ],
+          "pontos_negativos": [
+            "Desobediência à instrução de armazenar o cálculo final em uma variável dedicada"
+          ],
+          "feedback": "Você domina bem o uso de decimais (`double`) e a formatação `printf` do Java, parabéns! Porém, para esta avaliação, é necessário seguir o fluxo do enunciado passo a passo: calcule a porcentagem (multiplicando por 100), guarde isso numa variável específica e faça a condição `> 80`."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro capacidade_total_gb = 500\n\t\tinteiro espaco_ocupado_gb = 420\n\t\tinteiro porcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100\n\t\t\n\t\tse (porcentagem_ocupada > 80) {\n\t\t\tescreva(\"Alerta Crítico: Armazenamento quase cheio\")\n\t\t} senao {\n\t\t\tescreva(\"Status do armazenamento: Estável\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante seguiu fielmente o algoritmo proposto, armazenando os valores e calculando a porcentagem em variáveis antes de submetê-las ao desvio condicional de forma precisa.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Sequência lógica fiel ao enunciado",
+            "Uso adequado dos comandos de condição se/senao"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bom! Seu algoritmo cumpriu todas as etapas. Você criou as variáveis, fez a conta correta e estruturou as decisões do sistema de segurança com muita clareza."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro capacidade_total_gb = 500\n\t\tinteiro espaco_ocupado_gb = 420\n\t\t\n\t\tinteiro porcentagem_ocupada = capacidade_total_gb / espaco_ocupado_gb * 100\n\t\t\n\t\tse (porcentagem_ocupada > 80) {\n\t\t\tescreva(\"Alerta Crítico: Armazenamento quase cheio\")\n\t\t} senao {\n\t\t\tescreva(\"Status do armazenamento: Estável\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante declarou a estrutura adequadamente, mas falhou no raciocínio matemático ao posicionar a capacidade total como dividendo, gerando uma taxa inválida que anula a utilidade do alerta.",
+          "nota_final": 4.0,
+          "pontos_positivos": ["Organização visual e sintática corretas"],
+          "pontos_negativos": [
+            "Cálculo percentual com a base dividida de forma invertida"
+          ],
+          "feedback": "O esqueleto do seu algoritmo está excelente, você só precisa revisar a matemática. Ao fazer `capacidade_total_gb / espaco_ocupado_gb`, você criou uma divisão invertida. Lembre-se: em porcentagem, dividimos sempre a parte ocupada pelo valor total disponível."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro capacidade_total_gb = 500\n\t\tinteiro espaco_ocupado_gb = 420\n\t\tinteiro porcentagem_ocupada = espaco_ocupado_gb / capacidade_total_gb * 100\n\t\t\n\t\tse (porcentgem_ocupada > 80) {\n\t\t\tescreva(\"Alerta Crítico: Armazenamento quase cheio\")\n\t\t} senao {\n\t\t\tescreva(\"Status do armazenamento: Estável\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno omitiu a vogal 'a' no nome da variável dentro da condicional 'se'. Em Portugol, chamar um identificador que não foi previamente declarado com aquele nome exato trava a interpretação.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Raciocínio lógico e matemático irretocáveis"],
+          "pontos_negativos": [
+            "Erro de escrita no nome da variável durante a comparação condicional"
+          ],
+          "feedback": "O seu raciocínio está 100% correto! O único problema que impede o código de rodar é um pequeno erro de digitação. Na linha do comando `se`, você escreveu `porcentgem` em vez de `porcentagem`. Corrija a palavra para bater exatamente com a variável que você declarou acima."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\treal capacidade_total_gb = 500.0\n\t\treal espaco_ocupado_gb = 420.0\n\t\t\n\t\tse (espaco_ocupado_gb / capacidade_total_gb > 0.8) {\n\t\t\tescreva(\"Alerta Crítico: Armazenamento quase cheio\")\n\t\t} senao {\n\t\t\tescreva(\"Status do armazenamento: Estável\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou variáveis do tipo real e atalhou o cálculo comparando a fração decimal diretamente no laço condicional, pulando a etapa de isolamento e formatação do valor percentual exigida.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Compreensão avançada de razões matemáticas e dados flutuantes"
+          ],
+          "pontos_negativos": [
+            "Falta da criação de uma variável dedicada para guardar o cálculo percentual (com base 100)"
+          ],
+          "feedback": "É uma ótima sacada matemática usar proporções decimais (`> 0.8`) em vez de multiplicar por 100! No entanto, o enunciado pediu explicitamente que você criasse uma variável para guardar a porcentagem com base 100 antes de checar. Refaça adicionando essa etapa no seu código."
+        }
+      }
+    }
+  },
+  "questao8": {
+    "enunciado": "Em um sistema de posto de saúde, precisamos classificar o encaminhamento com base nos dias de sintomas. Crie uma variável dias_com_sintomas. Se o paciente estiver com sintomas há mais de 14 dias, o sistema deve exibir \"Atenção: Encaminhar para exames laboratoriais detalhados\". Senão, deve exibir \"Encaminhar para consulta médica padrão\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "dias_com_sintomas = 16  \n\nif dias_com_sintomas > 14:\n\tprint(\"Atenção: Encaminhar para exames laboratoriais detalhados\")\nelse:\n\tprint(\"Encaminhar para consulta médica padrão\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou a variável e aplicou o operador relacional de maioridade estrita corretamente, estruturando o bloco condicional de forma adequada às regras do enunciado clínico.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração correta da variável numérica",
+            "Uso apropriado do operador relacional estritamente maior (>)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você compreendeu a regra de negócio do sistema de saúde e estruturou o bloco condicional perfeitamente na sintaxe do Python."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "dias_com_sintomas = 16  \n\nif dias_com_sintomas >= 14:\n    print(\"Atenção: Encaminhar para exames laboratoriais detalhados\")\nelse:\n    print(\"Encaminhar para consulta médica padrão\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno estruturou o código de forma correta, mas cometeu uma falha semântica ao usar o operador de maior ou igual (>=), alterando a regra de negócio do encaminhamento médico.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Sintaxe condicional bem estruturada",
+            "Uso correto da função de impressão (print)"
+          ],
+          "pontos_negativos": [
+            "Inversão da regra de limite clínico com o uso do operador maior ou igual (>=)"
+          ],
+          "feedback": "Sua estrutura de código está muito boa! Porém, atenção à regra de negócio: o encaminhamento detalhado é para sintomas há *mais* de 14 dias (15 em diante). Ao usar `>=`, o sistema encaminha equivocadamente quem tem exatamente 14 dias também. Troque por `>`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "dias_com_sintomas = 16  \n\nif dias_com_sintomas > 14:\n    print \"Atenção: Encaminhar para exames laboratoriais detalhados\"\nelse:\n    print \"Encaminhar para consulta médica padrão\"",
+        "saida_esperada": {
+          "raciocinio": "O aluno implementou a lógica perfeitamente, mas utilizou a sintaxe obsoleta do Python 2 para a função print, omitindo os parênteses obrigatórios e gerando um erro de sintaxe estrutural.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica condicional e regra de negócio validadas corretamente"
+          ],
+          "pontos_negativos": [
+            "Omissão de parênteses obrigatórios na chamada da função print"
+          ],
+          "feedback": "A sua lógica do `if/else` está corretíssima! O único problema é que você usou o comando `print` sem parênteses. No Python 3, o uso dos parênteses é estritamente obrigatório. Coloque o texto entre `()` e seu código funcionará perfeitamente!"
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "dias_com_sintomas = 16  \n\nrespostas = {\n    True: \"Atenção: Encaminhar para exames laboratoriais detalhados\", \n    False: \"Encaminhar para consulta médica padrão\"\n}\nprint(respostas[dias_com_sintomas > 14])",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou um dicionário para mapear chaves booleanas aos resultados, obtendo a saída esperada, mas contornando a exigência pedagógica de utilizar a estrutura de controle de fluxo condicional padrão.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Raciocínio lógico abstrato excelente",
+            "Domínio na manipulação de estruturas de dados (dicionários)"
+          ],
+          "pontos_negativos": [
+            "Substituição do bloco condicional if/else por mapeamento direto de chaves"
+          ],
+          "feedback": "É brilhante a sua solução utilizando dicionários e chaves booleanas! Contudo, o objetivo pedagógico deste exercício é treinar a construção e o controle de fluxo explícito com blocos `if/else`. Tente refazer o algoritmo utilizando a estrutura condicional padrão do Python."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao8.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint dias_com_sintomas = 16;\n\t\t\n\t\tif (dias_com_sintomas > 14) {\n\t\t\tSystem.out.println(\"Atenção: Encaminhar para exames laboratoriais detalhados\");\n\t\t} else {\n\t\t\tSystem.out.println(\"Encaminhar para consulta médica padrão\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno tipou a variável adequadamente e implementou a verificação condicional utilizando o operador relacional correto, respeitando perfeitamente a sintaxe da linguagem Java.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Tipagem correta de variável inteira",
+            "Sintaxe condicional if/else impecável"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! A sua tipagem de dados e a estruturação do bloco condicional respeitam totalmente as regras rígidas do Java e atendem ao problema clínico com precisão."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao8.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int dias_com_sintomas = 16;\n        \n        if (dias_com_sintomas >= 14) {\n            System.out.println(\"Atenção: Encaminhar para exames laboratoriais detalhados\");\n        } else {\n            System.out.println(\"Encaminhar para consulta médica padrão\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno demonstrou domínio sintático da linguagem, mas aplicou o operador relacional maior ou igual (>=), violando a regra de negócio estrita estabelecida pelo sistema médico.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Aplicação correta de tipos primitivos e blocos de código"
+          ],
+          "pontos_negativos": [
+            "Utilização do operador maior ou igual (>=) alterando a lógica de triagem"
+          ],
+          "feedback": "O código compila sem problemas e a sua formatação no Java está excelente. Mas observe o detalhe da regra de negócio: o exame é para pacientes com *mais* de 14 dias de sintomas. O uso do `>=` inclui pacientes com exatamente 14 dias. Utilize o operador estritamente maior `>`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao8.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int dias_com_sintomas = 16;\n        \n        if (dias_com_sintomas > 14) {\n            print(\"Atenção: Encaminhar para exames laboratoriais detalhados\");\n        } else {\n            print(\"Encaminhar para consulta médica padrão\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno desenvolveu a estrutura condicional adequadamente, mas utilizou uma chamada de função genérica (print) inexistente no escopo nativo, causando falha de compilação por método não encontrado.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Regra de negócio interpretada com sucesso nos blocos condicionais"
+          ],
+          "pontos_negativos": [
+            "Uso de método de impressão inexistente na biblioteca padrão do Java"
+          ],
+          "feedback": "A sua lógica do algoritmo clínico está correta! No entanto, diferentemente do Python, o Java não possui uma função global `print`. Para imprimir algo na tela, você deve utilizar o comando completo `System.out.println()`. Corrija essa chamada para que o programa compile."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao8.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int dias_com_sintomas = 16;\n        \n        String mensagem = switch (dias_com_sintomas > 14 ? 1 : 0) {\n            case 1 -> \"Atenção: Encaminhar para exames laboratoriais detalhados\";\n            default -> \"Encaminhar para consulta médica padrão\";\n        };\n        System.out.println(mensagem);\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno mesclou um operador ternário a uma expressão switch para determinar a mensagem, o que resolve o problema, mas foge completamente da exigência didática de estruturar desvios condicionais clássicos.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Domínio avançado sobre expressões switch e operadores ternários"
+          ],
+          "pontos_negativos": [
+            "Abandono da estrutura condicional linear e explícita esperada para a avaliação"
+          ],
+          "feedback": "Sua solução utilizando `switch` e operador ternário demonstra um ótimo nível de conhecimento da linguagem! Porém, o exercício foi projetado para avaliar o domínio sobre os blocos básicos `if/else`. Por favor, reescreva a validação utilizando a sintaxe de desvio tradicional."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro dias_com_sintomas = 16\n\t\t\n\t\tse (dias_com_sintomas > 14) {\n\t\t\tescreva(\"Atenção: Encaminhar para exames laboratoriais detalhados\")\n\t\t} senao {\n\t\t\tescreva(\"Encaminhar para consulta médica padrão\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante elaborou a estrutura do algoritmo seguindo estritamente as diretrizes da linguagem, declarando o tipo adequado e aplicando a condição relacional solicitada no enunciado.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração exata de variável do tipo inteiro",
+            "Utilização correta do desvio condicional se/senao"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Parabéns! Você declarou a variável e aplicou a lógica de triagem perfeitamente, usando a estrutura condicional de acordo com a sintaxe impecável do Portugol."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro dias_com_sintomas = 16\n\t\t\n\t\tse (dias_com_sintomas >= 14) {\n\t\t\tescreva(\"Atenção: Encaminhar para exames laboratoriais detalhados\")\n\t\t} senao {\n\t\t\tescreva(\"Encaminhar para consulta médica padrão\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante estruturou bem a lógica sequencial, mas alterou a semântica da triagem ao usar o operador maior ou igual (>=), encaminhando erroneamente os casos que estão no exato limite de dias.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Identação e montagem de estruturas condicionais muito claras"
+          ],
+          "pontos_negativos": [
+            "Erro de delimitação matemática ao aplicar o operador maior ou igual (>=)"
+          ],
+          "feedback": "A estruturação do seu algoritmo está ótima! Apenas tome cuidado com a matemática do problema: pacientes com 14 dias exatos não devem ser encaminhados para exames detalhados. Altere o operador `>=` pelo operador estritamente maior `>` para validar a regra de triagem correta."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro dias_com_sintomas = 16\n\t\t\n\t\tse (dias_com_sintomas > 14) {\n\t\t\tescreva(Atenção: Encaminhar para exames laboratoriais detalhados)\n\t\t} senao {\n\t\t\tescreva(\"Encaminhar para consulta médica padrão\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno solucionou a lógica do problema com maestria, mas esqueceu de delimitar a cadeia de caracteres com aspas na função de saída, gerando um erro léxico que impede a interpretação.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica da estrutura condicional montada perfeitamente"
+          ],
+          "pontos_negativos": [
+            "Ausência de aspas duplas delimitando a cadeia de texto (string)"
+          ],
+          "feedback": "Seu raciocínio lógico é perfeito e a condição foi muito bem escrita! O único problema é que faltaram as aspas na mensagem do primeiro comando `escreva`. Em Portugol, qualquer texto solto precisa estar sempre envolvido por aspas duplas `\"\"` para ser reconhecido."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro dias_com_sintomas = 16\n\t\t\n\t\tinteiro status = 0\n\t\tse (dias_com_sintomas > 14) { status = 1 }\n\t\t\n\t\tescolha (status) {\n\t\t\tcaso 1: \n\t\t\t\tescreva(\"Atenção: Encaminhar para exames laboratoriais detalhados\")\n\t\t\t\tpare\n\t\t\tcaso 0: \n\t\t\t\tescreva(\"Encaminhar para consulta médica padrão\")\n\t\t\t\tpare\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno criou uma variável de estado intermediária para simular um comportamento binário através do laço escolha, tornando o código desnecessariamente prolixo e negligenciando o uso direto do laço senao.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Criatividade na resolução e bom uso de estruturas de seleção múltipla (escolha/caso)"
+          ],
+          "pontos_negativos": [
+            "Criação de variável inútil e não aproveitamento da eficiência do bloco condicional relacional"
+          ],
+          "feedback": "É uma alternativa criativa usar a variável `status` com a estrutura `escolha/caso`! Mas observe como seu código ficou mais longo e complexo. Em testes lógicos diretos de duas vias (verdadeiro ou falso), o comando `se/senao` avalia a própria expressão de forma automática. Tente refazer o código usando essa forma mais direta!"
+        }
+      }
+    }
+  },
+  "questao9": {
+    "enunciado": "Para um evento de tecnologia, crie as variáveis inscritos_confirmados, capacidade_auditorio e cadeiras_extras_disponiveis. Calcule a capacidade_total somando o auditório com as cadeiras extras. Em seguida, verifique: se os inscritos confirmados forem maiores que a capacidade total, calcule quantos inscritos ficarão de fora e exiba \"Evento lotado. Pessoas na lista de espera: [quantidade]\". Senão, exiba \"Lotação controlada. Evento pronto para iniciar\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "inscritos_confirmados = 120\ncapacidade_auditorio = 80\ncadeiras_extras_disponiveis = 20\n\ncapacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\nif inscritos_confirmados > capacidade_total:\n\tpessoas_de_fora = inscritos_confirmados - capacidade_total\n\tprint(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\nelse:\n\tprint(\"Lotação controlada. Evento pronto para iniciar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno estruturou corretamente as variáveis, realizou a soma da capacidade total e aplicou o bloco condicional exigido com a subtração exata para o cálculo da lista de espera.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo preciso da capacidade total e da lista de espera",
+            "Uso correto do operador relacional maior que (>)"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente! Você organizou muito bem o código, somando as capacidades e usando a estrutura condicional perfeitamente para validar a lotação do evento."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "inscritos_confirmados = 120\ncapacidade_auditorio = 80\ncadeiras_extras_disponiveis = 20\n\ncapacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\nif inscritos_confirmados > capacidade_total:\n    pessoas_de_fora = capacidade_total - inscritos_confirmados\n    print(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\nelse:\n    print(\"Lotação controlada. Evento pronto para iniciar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno montou a estrutura sintática de forma correta, mas inverteu os operandos na subtração da lista de espera, gerando um número negativo de pessoas de fora.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Compreensão clara da estrutura if/else",
+            "Declaração e soma de variáveis adequadas"
+          ],
+          "pontos_negativos": [
+            "Inversão da ordem matemática na subtração final (capacidade_total - inscritos_confirmados)"
+          ],
+          "feedback": "A estrutura do seu código está ótima, mas a matemática da lista de espera falhou. Ao subtrair os inscritos da capacidade (que é o valor menor), o resultado será negativo. Para achar quem ficou de fora, subtraia a capacidade total do número de inscritos."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "inscritos_confirmados = 120\ncapacidade_auditorio = 80\ncadeiras_extras_disponiveis = 20\n\ncapacidade_total = capacidade_auditorio cadeiras_extras_disponiveis\n\nif inscritos_confirmados > capacidade_total:\n    pessoas_de_fora = inscritos_confirmados - capacidade_total\n    print(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\nelse:\n    print(\"Lotação controlada. Evento pronto para iniciar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou a lógica condicional e a subtração com precisão, mas omitiu o operador aritmético de soma (+) ao juntar as variáveis de capacidade, gerando um SyntaxError imediato.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Lógica relacional e formatação de prints adequadas"
+          ],
+          "pontos_negativos": [
+            "Omissão do operador de adição (+) no cálculo da capacidade total"
+          ],
+          "feedback": "O seu raciocínio para a lotação do evento está certíssimo! No entanto, na linha em que você calcula a `capacidade_total`, você esqueceu de colocar o sinal de mais `+` entre as duas variáveis. Sem o operador, o Python não sabe o que fazer com os dois nomes soltos e trava o código."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "inscritos_confirmados = 120\ncapacidade_auditorio = 80\ncadeiras_extras_disponiveis = 20\n\ncapacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\npessoas_de_fora = max(0, inscritos_confirmados - capacidade_total)\n\nif pessoas_de_fora > 0:\n    print(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\nelse:\n    print(\"Lotação controlada. Evento pronto para iniciar\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou a função embutida max() para evitar números negativos e mudou a condição do if, alcançando o resultado, mas se desviando da estrutura relacional direta pedida no enunciado.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Uso criativo da função built-in max() para sanitização de dados",
+            "Código funcional e livre de quebras por números negativos"
+          ],
+          "pontos_negativos": [
+            "Fuga do escopo didático de comparar diretamente inscritos e capacidade no if principal"
+          ],
+          "feedback": "Muito inteligente o uso da função `max()` para garantir que o número não fique negativo! Porém, o objetivo didático deste exercício específico é praticar a comparação direta entre as duas variáveis principais. Tente fazer o bloco condicional testando `inscritos_confirmados > capacidade_total` de forma explícita."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao9.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint inscritos_confirmados = 120;\n\t\tint capacidade_auditorio = 80;\n\t\tint cadeiras_extras_disponiveis = 20;\n\t\t\n\t\tint capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis;\n\t\t\n\t\tif (inscritos_confirmados > capacidade_total) {\n\t\t\tint pessoas_de_fora = inscritos_confirmados - capacidade_total;\n\t\t\tSystem.out.println(\"Evento lotado. Pessoas na lista de espera: \" + pessoas_de_fora);\n\t\t} else {\n\t\t\tSystem.out.println(\"Lotação controlada. Evento pronto para iniciar\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno instanciou as variáveis inteiras com precisão, aplicou as operações aritméticas corretamente e formatou a sintaxe do bloco de controle em conformidade com as regras do Java.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração rigorosa de variáveis inteiras",
+            "Concatenação e estruturação perfeitas no bloco if/else"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Perfeito! A sua tipagem de dados, a matemática aplicada e o uso das estruturas de decisão estão seguindo rigorosamente o padrão da linguagem Java."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao9.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int inscritos_confirmados = 120;\n        int capacidade_auditorio = 80;\n        int cadeiras_extras_disponiveis = 20;\n        \n        int capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis;\n        \n        if (inscritos_confirmados > capacidade_total) {\n            int pessoas_de_fora = capacidade_total - inscritos_confirmados;\n            System.out.println(\"Evento lotado. Pessoas na lista de espera: \" + pessoas_de_fora);\n        } else {\n            System.out.println(\"Lotação controlada. Evento pronto para iniciar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou perfeitamente a tipagem e os comandos de saída, mas cometeu uma falha semântica ao inverter os fatores na subtração, o que exibiria um número negativo de pessoas na fila.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Domínio sintático da linguagem Java",
+            "Criação de variáveis operacionais de forma correta"
+          ],
+          "pontos_negativos": [
+            "Erro na ordem de grandeza durante a subtração da lista de espera"
+          ],
+          "feedback": "O seu código vai compilar sem problemas, mas cuidado com a regra matemática de negócios. Se você subtrair 120 de 100, o resultado exibido na tela será -20. Para saber quantas pessoas sobraram de fora, você deve pegar o total de inscritos e subtrair a capacidade."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao9.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int inscritos_confirmados = 120;\n        int capacidade_auditorio = 80;\n        int cadeiras_extras_disponiveis = 20;\n        \n        int capacidade_total = capacidade_auditorio cadeiras_extras_disponiveis;\n        \n        if (inscritos_confirmados > capacidade_total) {\n            int pessoas_de_fora = inscritos_confirmados - capacidade_total;\n            System.out.println(\"Evento lotado. Pessoas na lista de espera: \" + pessoas_de_fora);\n        } else {\n            System.out.println(\"Lotação controlada. Evento pronto para iniciar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu a lógica de negócio adequadamente, contudo a falta do operador de soma (+) na inicialização da capacidade total quebra a compilação por erro de token inesperado.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Estruturação adequada do escopo e dos desvios condicionais"
+          ],
+          "pontos_negativos": [
+            "Falta do operador aritmético de adição (+) na concatenação de valores numéricos"
+          ],
+          "feedback": "O raciocínio do seu programa está sensacional! Mas o compilador do Java é implacável com erros de digitação: você esqueceu o sinal de mais `+` ao tentar somar a capacidade do auditório com as cadeiras extras. Corrija isso para que o programa possa ser executado."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao9.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int inscritos_confirmados = 120;\n        int capacidade_auditorio = 80;\n        int cadeiras_extras_disponiveis = 20;\n        \n        int capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis;\n\n        int pessoas_de_fora = Math.max(0, inscritos_confirmados - capacidade_total);\n        \n        if (pessoas_de_fora > 0) {\n            System.out.println(\"Evento lotado. Pessoas na lista de espera: \" + pessoas_de_fora);\n        } else {\n            System.out.println(\"Lotação controlada. Evento pronto para iniciar\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno importou recursos da biblioteca Math para calcular o limite inferior, alterando a verificação principal do laço de controle. A técnica é válida para produção, mas burla a construção algorítmica básica requerida.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Aproveitamento excelente dos métodos nativos da classe Math",
+            "Proteção eficaz contra valores negativos"
+          ],
+          "pontos_negativos": [
+            "Desvio da condição explícita solicitada no escopo original do algoritmo"
+          ],
+          "feedback": "Excelente a sua aplicação do `Math.max()` para sanitizar o resultado matemático! Apesar disso demonstrar grande domínio da linguagem, a atividade pede que a comparação condicional seja feita diretamente entre a variável de inscritos e o total de vagas. Refaça o código utilizando essa verificação explícita no `if`."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro inscritos_confirmados = 120\n\t\tinteiro capacidade_auditorio = 80\n\t\tinteiro cadeiras_extras_disponiveis = 20\n\t\t\n\t\tinteiro capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\t\t\n\t\tse (inscritos_confirmados > capacidade_total) {\n\t\t\tinteiro pessoas_de_fora = inscritos_confirmados - capacidade_total\n\t\t\tescreva(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\n\t\t} senao {\n\t\t\tescreva(\"Lotação controlada. Evento pronto para iniciar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante seguiu as diretrizes do pseudocódigo perfeitamente, armazenando os tipos inteiros, efetuando as operações aritméticas sequenciais e utilizando a condição de forma coerente.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Organização algorítmica linear e funcional",
+            "Uso perfeito dos comandos condicionais se e senao"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! Você demonstrou ter assimilado perfeitamente o raciocínio lógico desta lição. Criou as variáveis, somou a capacidade corretamente e validou a lotação sem nenhuma falha matemática."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro inscritos_confirmados = 120\n\t\tinteiro capacidade_auditorio = 80\n\t\tinteiro cadeiras_extras_disponiveis = 20\n\t\t\n\t\tinteiro capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\t\t\n\t\tse (inscritos_confirmados > capacidade_total) {\n\t\t\tinteiro pessoas_de_fora = capacidade_total - inscritos_confirmados\n\t\t\tescreva(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\n\t\t} senao {\n\t\t\tescreva(\"Lotação controlada. Evento pronto para iniciar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O estudante construiu o fluxo do algoritmo com clareza sintática, mas a operação aritmética final foi montada invertida, resultando na exibição incorreta de um valor de déficit negativo.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Boa organização e indentação do bloco condicional"
+          ],
+          "pontos_negativos": [
+            "Inversão lógica na fórmula matemática de cálculo da lista de espera"
+          ],
+          "feedback": "A estruturação do seu algoritmo em Portugol está ótima. O único ajuste necessário é na matemática da fila de espera. Ao fazer a conta invertida (o menor menos o maior), o sistema mostrará um número negativo de pessoas. Mude a subtração para `inscritos_confirmados - capacidade_total`."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro inscritos_confirmados = 120\n\t\tinteiro capacidade_auditorio = 80\n\t\tinteiro cadeiras_extras_disponiveis = 20\n\t\t\n\t\tinteiro capacidade_total = capacidade_auditorio cadeiras_extras_disponiveis\n\t\t\n\t\tse (inscritos_confirmados > capacidade_total) {\n\t\t\tinteiro pessoas_de_fora = inscritos_confirmados - capacidade_total\n\t\t\tescreva(\"Evento lotado. Pessoas na lista de espera: \", pessoas_de_fora)\n\t\t} senao {\n\t\t\tescreva(\"Lotação controlada. Evento pronto para iniciar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno compreendeu o fluxo lógico de validação de vagas, mas omitiu o sinal de soma (+) ao declarar o total disponível, causando um erro de instrução malformada no interpretador.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Condicional matemática projetada corretamente"
+          ],
+          "pontos_negativos": [
+            "Omissão de operador aritmético (+) em expressão de soma"
+          ],
+          "feedback": "A sua ideia de como resolver o problema está certíssima! O único erro é puramente de digitação: faltou o operador matemático `+` para unir a variável das cadeiras extras à do auditório. Adicione o sinal e o Portugol Studio rodará a sua solução perfeitamente."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tinclua biblioteca Matematica --> mat\n\t\n\tfuncao inicio() {\n\t\tinteiro inscritos_confirmados = 120\n\t\tinteiro capacidade_auditorio = 80\n\t\tinteiro cadeiras_extras_disponiveis = 20\n\t\t\n\t\tinteiro capacidade_total = capacidade_auditorio + cadeiras_extras_disponiveis\n\t\t\n\t\tinteiro sobra = inscritos_confirmados - capacidade_total\n\t\t\n\t\tse (sobra > 0) {\n\t\t\tescreva(\"Evento lotado. Pessoas na lista de espera: \", mat.valor_absoluto(sobra))\n\t\t} senao {\n\t\t\tescreva(\"Lotação controlada. Evento pronto para iniciar\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou funções de biblioteca matemática para normalizar o resultado e modificou a variável avaliada pelo desvio condicional, fugindo da estrutura de teste comparativo direto ensinada.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Conhecimento consolidado em importação de bibliotecas externas do VisuAlg/Portugol"
+          ],
+          "pontos_negativos": [
+            "Substituição do teste comparativo direto exigido por função de valor absoluto (mat.valor_absoluto)"
+          ],
+          "feedback": "É muito legal ver que você já está explorando as bibliotecas do Portugol para usar o valor absoluto matemático! Porém, o exercício foi concebido especificamente para praticarmos a lógica condicional direta comparando duas variáveis simples no `se`. Tente usar a comparação `(inscritos_confirmados > capacidade_total)` sem depender de bibliotecas externas para mascarar dados invertidos."
+        }
+      }
+    }
   }
 }

@@ -1,1 +1,0 @@
-Um script monitora o disco de um servidor. Crie a variável capacidade_total_gb (ex: 500) e espaco_ocupado_gb (ex: 420). Calcule qual é a porcentagem de espaço ocupado (dica: divida o ocupado pelo total e multiplique por 100). Se a porcentagem calculada for maior que 80, exiba "Alerta Crítico: Armazenamento quase cheio". Senão, exiba "Status do armazenamento: Estável".

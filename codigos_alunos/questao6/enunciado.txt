@@ -1,1 +1,0 @@
-Crie uma variável numero_secreto. Utilize o operador de módulo/resto da divisão (%) para verificar se o número é divisível por 2 de forma exata. Se o resto da divisão por 2 for igual a 0, exiba "O número é Par". Caso contrário, exiba "O número é Ímpar".
