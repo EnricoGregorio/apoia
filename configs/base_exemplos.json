@@ -47,7 +47,7 @@
           "feedback": "Sua lógica está irretocável! Porém, o código não vai compilar porque você esqueceu de colocar uma vírgula separando o texto da variável dentro do seu 'print'."
         }
       },
-      "exemplo_outro_erro": {
+      "exemplo_erro_atalho": {
         "codigo": "moedas_coletadas = 12\nmonstros_derrotados = 3\n\npontuacao_total = sum([moedas_coletadas * 10, monstros_derrotados * 50])\nprint(\"A pontuação total é: \", pontuacao_total)",
         "saida_esperada": {
           "raciocinio": "O aluno utilizou a função pronta sum() do Python passando uma lista, em vez de estruturar a lógica aritmética clássica solicitada.",
@@ -102,7 +102,7 @@
           "feedback": "Sua lógica está irretocável! Porém, o código não vai compilar porque você esqueceu de usar o sinal de '+' para juntar o texto com a variável dentro do 'System.out.println'."
         }
       },
-      "exemplo_outro_erro": {
+      "exemplo_erro_atalho": {
         "codigo": "package Questao1.java;\n\nimport java.util.Arrays;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int moedas_coletadas = 12;\n        int monstros_derrotados = 3;\n\n        int pontuacao_total = Arrays.stream(new int[]{moedas_coletadas * 10, monstros_derrotados * 50}).sum();\n        \n        System.out.println(\"A pontuação total é: \" + pontuacao_total);\n    }\n}\n",
         "saida_esperada": {
           "raciocinio": "O aluno utilizou a API de Streams do Java (Arrays.stream) para somar os valores, fugindo da lógica aritmética básica.",
@@ -152,7 +152,7 @@
           "feedback": "Sua lógica está irretocável! Porém, o interpretador vai acusar erro porque faltou uma vírgula separando o texto da sua variável no comando 'escreva'."
         }
       },
-      "exemplo_outro_erro": {
+      "exemplo_erro_atalho": {
         "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro valores[2] = {12 * 10, 3 * 50}\n\t\tinteiro pontuacao_total = valores[0] + valores[1]\n\t\t\n\t\tescreva(\"A pontuação total é: \", pontuacao_total)\n\t}\n}",
         "saida_esperada": {
           "raciocinio": "O aluno utilizou vetores para armazenar e somar as pontuações, fugindo da instrução direta de criar duas variáveis simples.",
@@ -160,6 +160,177 @@
           "pontos_positivos": ["Domínio do uso de vetores (arrays)"],
           "pontos_negativos": ["Fuga do requisito de variáveis simples"],
           "feedback": "Legal ver que você já sabe manipular vetores! No entanto, o enunciado pedia explicitamente a criação de duas variáveis simples. Em programação, seguir os requisitos à risca é muito importante."
+        }
+      }
+    }
+  },
+  "questao2": {
+    "enunciado": "Crie uma variável chamada ano_nascimento e atribua a ela o ano em que uma pessoa nasceu. Crie outra variável com o ano_atual. Calcule a idade da pessoa. Se a idade for maior ou igual a 18, exiba na tela \"Acesso permitido\". Caso contrário, exiba \"Acesso negado\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "ano_nascimento = 2005\nano_atual = 2026\nidade = ano_atual - ano_nascimento\n\nif idade >= 18:\n\tprint(\"Acesso permitido\")\nelse:\n\tprint(\"Acesso negado\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou as variáveis corretamente, aplicou a subtração matemática adequada e estruturou o bloco condicional 'if/else' de forma impecável, cumprindo todos os requisitos do enunciado.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo preciso da idade",
+            "Uso correto da estrutura condicional if/else"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você demonstrou pleno domínio sobre variáveis, operadores matemáticos e controle de fluxo. Seu código resolve o problema exatamente como pedido."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "ano_nascimento = 2005\nano_atual = 2026\nidade = ano_nascimento - ano_atual\n\nif idade >= 18:\n    print(\"Acesso permitido\")\nelse:\n    print(\"Acesso negado\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno estruturou corretamente as variáveis e as condicionais, mas cometeu um erro lógico ao inverter a subtração matemática, gerando uma idade negativa e comprometendo a validação.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Boa estruturação das variáveis",
+            "Uso correto da sintaxe do if/else"
+          ],
+          "pontos_negativos": ["Inversão dos operandos na subtração da idade"],
+          "feedback": "Você mandou bem na estrutura do código, mas cometeu um pequeno deslize na matemática. Ao subtrair o ano atual do ano de nascimento, a idade gerada será um número negativo. Inverta a ordem para `ano_atual - ano_nascimento` e seu código ficará perfeito!"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "ano_nascimento = 2005\nano_atual = 2026\nidade = ano_atual - ano_nascimento\n\nif idade >= 18\n    print(\"Acesso permitido\")\nelse:\n    print(\"Acesso negado\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno construiu a lógica matemática correta, porém omitiu os dois pontos ':' ao final da declaração do 'if', o que impede a compilação do script pelo interpretador Python.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Lógica matemática perfeitamente resolvida"],
+          "pontos_negativos": [
+            "Ausência dos dois pontos ':' na estrutura condicional"
+          ],
+          "feedback": "Sua lógica está irretocável! No entanto, o código não será executado porque você esqueceu de colocar os dois pontos ':' no final da linha do 'if'. Na sintaxe do Python, eles são estritamente obrigatórios para iniciar um bloco condicional."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "ano_nascimento = 2005\nano_atual = 2026\nidade = ano_atual - ano_nascimento\n\nprint(\"Acesso permitido\" if idade >= 18 else \"Acesso negado\")",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou um operador ternário para resolver a condicional em uma única linha. Embora o código funcione, a prática foge do objetivo pedagógico de treinar a estrutura de blocos 'if/else' tradicionais.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Cálculo correto da idade",
+            "Código funcional e otimizado"
+          ],
+          "pontos_negativos": [
+            "Uso de operador ternário em vez do bloco condicional padrão"
+          ],
+          "feedback": "Legal ver que você já conhece recursos avançados como o 'if' inline (operador ternário)! No entanto, o objetivo pedagógico deste exercício era praticar a estruturação clássica de blocos 'if' e 'else'. Tente refazer utilizando a estrutura padrão de indentação."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao2.java;\n\npublic class RespostaCerta {\n\tpublic static void main(String[] args) {\n\t\tint ano_nascimento = 2005;\n\t\tint ano_atual = 2026;\n\t\tint idade = ano_atual - ano_nascimento;\n\t\t\n\t\tif (idade >= 18) {\n\t\t\tSystem.out.println(\"Acesso permitido\");\n\t\t} else {\n\t\t\tSystem.out.println(\"Acesso negado\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno tipou as variáveis corretamente, calculou a idade com precisão e aplicou a estrutura de decisão 'if/else' respeitando perfeitamente a sintaxe da linguagem Java.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Declaração correta de variáveis inteiras",
+            "Estruturação impecável do bloco condicional"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Excelente trabalho! Você tipou perfeitamente as variáveis em Java e utilizou os operadores relacionais corretamente dentro da condicional. Seu código está impecável!"
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao2.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int ano_nascimento = 2005;\n        int ano_atual = 2026;\n        \n        int idade = ano_nascimento - ano_atual;\n        \n        if (idade >= 18) {\n            System.out.println(\"Acesso permitido\");\n        } else {\n            System.out.println(\"Acesso negado\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno implementou a estrutura da linguagem adequadamente, mas inverteu os termos na subtração matemática, resultando em uma idade negativa que invalida a lógica do sistema.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Tipagem rigorosa de variáveis",
+            "Sintaxe de controle de fluxo correta"
+          ],
+          "pontos_negativos": ["Erro lógico na fórmula de cálculo da idade"],
+          "feedback": "A sua estrutura de código Java está muito boa, mas houve um erro na lógica da subtração. Ao fazer `ano_nascimento - ano_atual`, a idade será um valor negativo. Lembre-se sempre de subtrair o valor menor do valor maior em cálculos de idade!"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao2.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int ano_nascimento = 2005;\n        int ano_atual = 2026;\n        int idade = ano_atual - ano_nascimento;\n        \n        if idade >= 18 {\n            System.out.println(\"Acesso permitido\");\n        } else {\n            System.out.println(\"Acesso negado\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno aplicou os conceitos corretos de variáveis e relacionais, mas esqueceu de envolver a expressão do 'if' entre parênteses, causando um erro fatal de compilação em Java.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Raciocínio lógico e matemático correto"],
+          "pontos_negativos": [
+            "Falta de parênteses delimitando a condição do comando 'if'"
+          ],
+          "feedback": "Você acertou em cheio na lógica matemática! Porém, o seu código não vai compilar porque, na linguagem Java, é estritamente obrigatório colocar a condição do 'if' entre parênteses. Altere para `if (idade >= 18)` e o problema será resolvido."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao2.java;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int ano_nascimento = 2005;\n        int ano_atual = 2026;\n        int idade = ano_atual - ano_nascimento;\n        \n        System.out.println(idade >= 18 ? \"Acesso permitido\" : \"Acesso negado\");\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "O aluno utilizou um operador ternário no lugar da estrutura 'if/else' solicitada. A lógica funciona perfeitamente, mas ignora a exigência didática de elaboração de blocos condicionais explícitos.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Cálculo exato da idade",
+            "Conhecimento prático avançado de operadores"
+          ],
+          "pontos_negativos": [
+            "Substituição de blocos condicionais completos por operador ternário"
+          ],
+          "feedback": "Muito bacana ver que você já domina o uso do operador ternário do Java! Mas atenção: o objetivo didático desta atividade era fixar a sintaxe tradicional dos blocos condicionais `if` e `else` com chaves `{}`. Tente reescrever o código focando na base estrutural da linguagem."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro ano_nascimento = 2005\n\t\tinteiro ano_atual = 2026\n\t\tinteiro idade = ano_atual - ano_nascimento\n\t\t\n\t\tse (idade >= 18) {\n\t\t\tescreva(\"Acesso permitido\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso negado\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou as variáveis e realizou o cálculo matemático de forma precisa, implementando a estrutura 'se/senao' com a sintaxe impecável da linguagem.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo matemático correto",
+            "Utilização adequada das palavras reservadas se e senao"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Muito bem! Sua lógica fluiu perfeitamente. Você respeitou as regras do Portugol, calculou a idade corretamente e estruturou os desvios condicionais com muita clareza."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro ano_nascimento = 2005\n\t\tinteiro ano_atual = 2026\n\t\t\n\t\tinteiro idade = ano_nascimento - ano_atual\n\t\t\n\t\tse (idade >= 18) {\n\t\t\tescreva(\"Acesso permitido\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso negado\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno declarou os tipos corretamente, mas errou ao posicionar os operandos da subtração. A conta gera um número negativo, impossibilitando que a validação funcione no cenário real.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Uso correto das estruturas se e senao",
+            "Declaração correta de variáveis inteiras"
+          ],
+          "pontos_negativos": [
+            "Cálculo da idade com fatores numéricos invertidos"
+          ],
+          "feedback": "Você foi muito bem na formatação do código e estruturas de decisão, mas escorregou na matemática básica. Se você subtrair 2026 de 2005, o resultado será negativo. Corrija a ordem das variáveis na subtração e o programa rodará direitinho!"
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro ano_nascimento = 2005\n\t\tinteiro ano_atual = 2026\n\t\tinteiro idade = ano_atual - ano_nascimento\n\t\t\n\t\tse idade >= 18 {\n\t\t\tescreva(\"Acesso permitido\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso negado\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno desenvolveu bem o algoritmo, contudo, na linha condicional, não inseriu os parênteses obrigatórios ao redor da expressão, o que impede a execução do script.",
+          "nota_final": 0.0,
+          "pontos_positivos": [
+            "Sequência lógica e matemática do algoritmo corretas"
+          ],
+          "pontos_negativos": [
+            "Ausência de parênteses delimitando a condição do comando 'se'"
+          ],
+          "feedback": "A sua linha de raciocínio está ótima! O único problema é estrutural: no Portugol, a verificação condicional precisa estar sempre entre parênteses. Altere para `se (idade >= 18)` e seu código compilará na hora!"
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro ano_nascimento = 2005\n\t\tinteiro ano_atual = 2026\n\t\tinteiro idade = ano_atual - ano_nascimento\n\t\t\n\t\tlogico maior_de_idade = idade >= 18\n\t\t\n\t\tse (maior_de_idade == verdadeiro) {\n\t\t\tescreva(\"Acesso permitido\")\n\t\t} senao {\n\t\t\tescreva(\"Acesso negado\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "O aluno criou uma variável lógica intermediária e usou verificação de igualdade redundante na condicional. Embora válido, não é o método direto esperado para treinar a avaliação de expressões relacionais dentro do próprio laço 'se'.",
+          "nota_final": 5.0,
+          "pontos_positivos": [
+            "Compreensão do conceito de tipo lógico (booleano)"
+          ],
+          "pontos_negativos": [
+            "Criação de variável intermediária desnecessária e comparação redundante"
+          ],
+          "feedback": "É ótimo ver que você entende como as expressões se transformam em valores booleanos! Contudo, criar uma variável apenas para isso deixa o código mais longo e custoso do que precisa. Tente colocar a avaliação relacional `idade >= 18` diretamente dentro dos parênteses do comando `se`."
         }
       }
     }

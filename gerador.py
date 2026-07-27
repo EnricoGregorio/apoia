@@ -22,7 +22,7 @@ def gerar_bloco_json(caminho_arquivo):
         chave = "exemplo_erro_sintaxe"
         nota = 0.0
     else:
-        chave = "exemplo_outro_erro"
+        chave = "exemplo_erro_atalho"
         nota = 5.0
         
     # A estrutura pedagógica padronizada embutida nos placeholders
