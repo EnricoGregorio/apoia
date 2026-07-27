@@ -3,7 +3,7 @@
     { "id": 1, "descricao": "Cálculo de Pontuação e Variáveis", "peso": 10.0 }
   ],
   "configuracao_ast": {
-    "proibir_loops": false, 
+    "proibir_loops": true, 
     "proibir_recursao": false,
     "proibir_funcoes_prontas": [],
     "exigir_tipagem": false,

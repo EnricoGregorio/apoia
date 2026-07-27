@@ -1,7 +1,7 @@
 import json
 import re
 import requests # Para se comunicar com o Ollama via rede.
-from analisadores import AnalisadorPython, AnalisadorJava
+from analisadores import AnalisadorPython, AnalisadorJava, AnalisadorPortugol
 
 class AvaliadorIA:
     def __init__(self, nome_modelo):
@@ -16,6 +16,8 @@ class AvaliadorIA:
             analisador = AnalisadorPython()
         elif linguagem.lower() == "java":
             analisador = AnalisadorJava()
+        elif linguagem.lower() == "portugol":
+            analisador = AnalisadorPortugol()
 
         # Se existir um analisador para a lingugagem, ele atua como porteiro.
         if analisador:
