@@ -25,21 +25,17 @@ def modo_lote(avaliador, args):
     tempo_inicio_total = time.time()
     
     diretorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    caminho_enunciado = os.path.join(diretorio_base, args.enunciado)
     caminho_rubrica = os.path.join(diretorio_base, args.rubrica)
     caminho_alunos = os.path.join(diretorio_base, args.pasta_alunos)
-
-    # Corrigido o caminho para a nomenclatura da pasta validada anteriormente
-    caminho_exemplos = os.path.join(diretorio_base, "configs/base_exemplos.json")
+    caminho_exemplos = os.path.join(diretorio_base, args.exemplos)
     
     pasta_correcoes = os.path.join(diretorio_base, "correcoes")
     os.makedirs(pasta_correcoes, exist_ok=True)
     
-    texto_enunciado = ler_arquivo(caminho_enunciado)
     texto_rubrica = ler_arquivo(caminho_rubrica)
     texto_exemplos_json = ler_arquivo(caminho_exemplos)
 
-    if not texto_enunciado or not texto_rubrica or not texto_exemplos_json:
+    if not texto_rubrica or not texto_exemplos_json:
         print("Abordando correção: Arquivos de configuração ausentes.")
         return
         
@@ -50,7 +46,7 @@ def modo_lote(avaliador, args):
     arquivos_alunos = glob.glob(padrao_busca)
     
     if not arquivos_alunos:
-        print("Nenhum código encontrado. Verifique se a estrutura está como: codigos_alunos/questao_X/linguagem/arquivo")
+        print("Nenhum código encontrado. Verifique se a estrutura está como: codigos_alunos/questaoX/linguagem/arquivo")
         return
 
     relatorio_geral = []
@@ -63,6 +59,8 @@ def modo_lote(avaliador, args):
 
         print(f"\n> Verificando: {nome_aluno} | Questão: {questao.upper()} | Linguagem: {linguagem.capitalize()}...")
 
+        # Extrai o enunciado dinamicamente da fonte única, o JSON.
+        texto_enunciado = base_exemplos.get(questao, {}).get("enunciado", "Enunciado não fornecido.")
         exemplos_dinamicos = base_exemplos.get(questao, {}).get(linguagem, {})
         
         # O sistema continuará ignorando questões que ainda não estão mapeadas no JSON
@@ -74,7 +72,6 @@ def modo_lote(avaliador, args):
         
         texto_codigo = ler_arquivo(caminho_aluno)
 
-        # Injeção da variável linguagem para coordenar a análise AST
         resultado = avaliador.avaliar(
             texto_enunciado, 
             json_rubrica, 
@@ -132,8 +129,8 @@ def modo_lote(avaliador, args):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--modelo', default="gemma4:12b")
-    parser.add_argument('--enunciado', default="configs/enunciado.txt")
     parser.add_argument('--rubrica', default="configs/rubrica.json")
+    parser.add_argument('--exemplos', default="configs/base_exemplos.json")
     parser.add_argument('--pasta_alunos', default="codigos_alunos")
     
     args = parser.parse_args()
