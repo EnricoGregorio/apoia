@@ -1,7 +1,19 @@
 from javalang import tree, parse, parser, tokenizer
 from .analisador_base import AnalisadorBase
 
+"""
+Módulo responsável pela análise estática de códigos em Java.
+Utiliza a biblioteca 'javalang' para parsear o código e validar restrições pedagógicas.
+"""
+
 class AnalisadorJava(AnalisadorBase):
+    """
+    Analisador sintático para Java.
+    
+    Implementa a varredura estrutural buscando por nós específicos do Java,
+    como declarações de métodos, loops, expressões de importação e condicionais.
+    """
+    
     def _verificar_loops(self, ast_tree):
         violacoes = []
         if list(ast_tree.filter(tree.WhileStatement)) or list(ast_tree.filter(tree.DoStatement)):

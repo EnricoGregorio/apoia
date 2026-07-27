@@ -6,6 +6,12 @@ import glob
 import time
 from avaliador import AvaliadorIA
 
+"""
+Ponto de entrada e orquestrador de arquivos do sistema ApoIA.
+Responsável por varrer o repositório local, coordenar correções em lote 
+e gerar relatórios consolidados em CSV.
+"""
+
 def ler_arquivo(caminho):
     if not os.path.exists(caminho):
         print(f"ERRO: Arquivo não encontrado: {caminho}")

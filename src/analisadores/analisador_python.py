@@ -1,7 +1,21 @@
 import ast
 from .analisador_base import AnalisadorBase
 
+"""
+Módulo responsável pela análise estática de códigos em Python.
+Utiliza a biblioteca nativa 'ast' para validar restrições pedagógicas 
+sem executar o código do aluno.
+"""
+
 class AnalisadorPython(AnalisadorBase):
+    """
+    Analisador sintático para Python. 
+    
+    Herda o contrato de AnalisadorBase e implementa a varredura dos nós
+    da Árvore Sintática Abstrata do Python para 
+    detectar violações de regras estruturais.
+    """
+
     def _verificar_loops(self, tree):
         violacoes = []
         for node in ast.walk(tree):

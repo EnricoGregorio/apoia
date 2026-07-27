@@ -3,7 +3,20 @@ import re
 import requests # Para se comunicar com o Ollama via rede.
 from analisadores import AnalisadorPython, AnalisadorJava, AnalisadorPortugol
 
+"""
+Módulo centralizador de avaliação do Motor Híbrido.
+Gerencia o fluxo de bloqueio sintático e invoca o Modelo de Linguagem Local.
+"""
+
 class AvaliadorIA:
+    """
+    Maestro de Orquestração.
+    
+    Esta classe aplica o Padrão Strategy para delegar a análise sintática 
+    ao 'porteiro' correto (Python, Java ou Portugol) e, em caso de sucesso, 
+    encaminha o código do aluno junto com os exemplos RAG para a API do Ollama.
+    """
+    
     def __init__(self, nome_modelo):
         print(f">>> Inicializando Motor Híbrido conectado ao Ollama (Modelo: {nome_modelo})...")
         self.modelo = nome_modelo 

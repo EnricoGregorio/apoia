@@ -1,7 +1,19 @@
 import re
 from .analisador_base import AnalisadorBase
 
+"""
+Módulo responsável pela análise léxica de pseudocódigo em Portugol.
+Baseado nas especificações do Portugol Web Studio e VisuAlg.
+"""
+
 class AnalisadorPortugol(AnalisadorBase):
+    """
+    Analisador léxico baseado em Expressões Regulares.
+    
+    Como o Portugol não possui suporte nativo à geração de Árvores Sintáticas
+    no ecossistema Python, esta classe atua validando a presença e o formato 
+    de tokens léxicos chave para garantir as restrições didáticas.
+    """
     
     def _limpar_comentarios(self, codigo):
         # Remove comentários de linha (//) e de bloco (/* */).
