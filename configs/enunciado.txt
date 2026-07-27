@@ -1,1 +1,0 @@
-Você está desenvolvendo a lógica de pontuação de um jogo. Crie duas variáveis: moedas_coletadas e monstros_derrotados. Sabendo que cada moeda vale 10 pontos e cada monstro vale 50 pontos, crie uma variável pontuacao_total que calcule o valor final. Ao final, imprima o valor da pontuação total.
