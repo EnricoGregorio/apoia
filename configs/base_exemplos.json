@@ -334,5 +334,154 @@
         }
       }
     }
+  },
+  "questao3": {
+    "enunciado": "Crie uma variável temperatura_celsius com um valor numérico. Calcule a conversão desse valor para Fahrenheit usando a fórmula: (celsius * 1.8) + 32 e guarde em uma nova variável. Se a temperatura em Fahrenheit for maior que 100, exiba \"Alerta de calor\". Se não for, exiba \"Temperatura normal\".",
+    "python": {
+      "exemplo_correto": {
+        "codigo": "temperatura_celsius = 40\ntemperatura_fahrenheit = temperatura_celsius * 1.8 + 32\n\nif temperatura_fahrenheit > 100:\n\tprint(\"Alerta de calor\")\nelse:\n\tprint(\"Temperatura normal\")",
+        "saida_esperada": {
+          "raciocinio": "Nota 10.0. Lógica e parâmetros validados. O aluno aplicou a conversão aritmética exata e o desvio condicional foi formatado corretamente.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Cálculo matemático preciso",
+            "Sintaxe condicional correta"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Nota 10.0. O seu código atingiu todos os requisitos. A conversão de temperatura está exata e a estrutura if/else foi muito bem aplicada."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "temperatura_celsius = 40\ntemperatura_fahrenheit = temperatura_celsius * (1.8 + 32)\n\nif temperatura_fahrenheit > 100:\n    print(\"Alerta de calor\")\nelse:\n    print(\"Temperatura normal\")",
+        "saida_esperada": {
+          "raciocinio": "Nota 4.0. Estrutura condicional validada. O aluno alterou a precedência da conversão isolando a adição entre parênteses, invalidando o cálculo térmico.",
+          "nota_final": 4.0,
+          "pontos_positivos": [
+            "Declaração de variáveis adequada",
+            "Uso correto dos blocos de decisão"
+          ],
+          "pontos_negativos": ["Erro de precedência matemática na conversão"],
+          "feedback": "Nota 4.0. Remova os parênteses em `(1.8 + 32)`. Ao utilizá-los, você forçou o sistema a somar antes de multiplicar, quebrando a fórmula matemática de conversão."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "temperatura_celsius = 40\ntemperatura_fahrenheit = (temperatura_celsius * 1.8) + 32\n\nif temperatura_fahrenheit > 100:\n    print(\"Alerta de calor\")\nelse:\nprint(\"Temperatura normal\")",
+        "saida_esperada": {
+          "raciocinio": "Nota 0.0. Falha estrutural bloqueante. A omissão da indentação após o 'else' impede a interpretação do script pelo Python.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Fórmula de conversão correta"],
+          "pontos_negativos": [
+            "Ausência de indentação obrigatória no bloco else"
+          ],
+          "feedback": "Nota 0.0. Adicione um espaçamento (Tab) antes do `print` na última linha. O Python exige a indentação para entender que a ação pertence ao comando `else`."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "temperatura_celsius = 40\nconversor = lambda c: (c * 1.8) + 32\ntemperatura_fahrenheit = conversor(temperatura_celsius)\n\nif temperatura_fahrenheit > 100:\n    print(\"Alerta de calor\")\nelse:\n    print(\"Temperatura normal\")",
+        "saida_esperada": {
+          "raciocinio": "Nota 5.0. Resultado final alcançado. A utilização de função anônima contorna o exercício pedagógico de atribuição direta e linear exigido no enunciado.",
+          "nota_final": 5.0,
+          "pontos_positivos": ["Implementação algorítmica funcional"],
+          "pontos_negativos": ["Uso desnecessário de função lambda"],
+          "feedback": "Nota 5.0. Troque a função `lambda` pelo cálculo direto. O foco da atividade é praticar operadores básicos sequenciais sem depender de estruturas funcionais avançadas."
+        }
+      }
+    },
+    "java": {
+      "exemplo_correto": {
+        "codigo": "package Questao3.java;\n\npublic class RespostaCerta {\n    public static void main(String[] args) {\n\t\tint temperatura_celsius = 40;\n\t\tdouble temperatura_fahrenheit = temperatura_celsius * 1.8 + 32;\n\t\t\n\t\tif (temperatura_fahrenheit > 100) {\n\t\t\tSystem.out.println(\"Alerta de calor\");\n\t\t} else {\n\t\t\tSystem.out.println(\"Temperatura normal\");\n\t\t}\n\t}\n}\n",
+        "saida_esperada": {
+          "raciocinio": "Nota 10.0. Processamento validado. A tipagem de dados foi coerente e os desvios condicionais foram escritos seguindo rigorosamente a sintaxe da linguagem.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Tipagem de dados coerente",
+            "Estruturação correta do bloco if/else"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Nota 10.0. Excelente. O uso do `double` para a conversão fracionária está impecável, assim como os seus blocos condicionais."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "package Questao3.java;\n\npublic class ErroLogica {\n    public static void main(String[] args) {\n        int temperatura_celsius = 40;\n        \n        double temperatura_fahrenheit = temperatura_celsius * (1.8 + 32);\n        \n        if (temperatura_fahrenheit > 100) {\n            System.out.println(\"Alerta de calor\");\n        } else {\n            System.out.println(\"Temperatura normal\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "Nota 4.0. Tipagem aceita. O agrupamento indevido da constante térmica nos parênteses corrompeu a ordem das operações multiplicativas da fórmula.",
+          "nota_final": 4.0,
+          "pontos_positivos": ["Conhecimento adequado de tipos numéricos"],
+          "pontos_negativos": ["Alteração da regra de precedência matemática"],
+          "feedback": "Nota 4.0. Retire os parênteses da expressão de cálculo. A matemática exige que a multiplicação por 1.8 ocorra antes da soma de 32."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "package Questao3.java;\n\npublic class ErroSintaxe {\n    public static void main(String[] args) {\n        int temperatura_celsius = 40;\n        \n        double temperatura_fahrenheit = temperatura_celsius * 1.8 + 32\n        \n        if (temperatura_fahrenheit > 100) {\n            System.out.println(\"Alerta de calor\");\n        } else {\n            System.out.println(\"Temperatura normal\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "Nota 0.0. Falha de compilação. A ausência de ponto e vírgula na linha de processamento de variável gera um erro crítico imediato.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Fórmula algorítmica correta"],
+          "pontos_negativos": ["Omissão do delimitador ponto e vírgula"],
+          "feedback": "Nota 0.0. Insira o `;` no final do cálculo de Fahrenheit. Em Java, a finalização de declarações com este delimitador é estritamente obrigatória."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "package Questao3.java;\n\nimport java.util.function.Function;\n\npublic class ErroAtalho {\n    public static void main(String[] args) {\n        int temperatura_celsius = 40;\n        \n        Function<Integer, Double> conversor = c -> (c * 1.8) + 32;\n        double temperatura_fahrenheit = conversor.apply(temperatura_celsius);\n        \n        if (temperatura_fahrenheit > 100) {\n            System.out.println(\"Alerta de calor\");\n        } else {\n            System.out.println(\"Temperatura normal\");\n        }\n    }\n}\n",
+        "saida_esperada": {
+          "raciocinio": "Nota 5.0. Processamento contornado. A injeção de interface funcional burla a exigência de construir a linearidade algorítmica básica em escopo inicial.",
+          "nota_final": 5.0,
+          "pontos_positivos": ["Capacidade avançada em programação funcional"],
+          "pontos_negativos": [
+            "Desvio da simplicidade e escopo inicial exigidos"
+          ],
+          "feedback": "Nota 5.0. Remova a interface `Function`. É excelente que domine pacotes avançados, mas o propósito aqui é utilizar expressões lineares diretas na variável."
+        }
+      }
+    },
+    "portugol": {
+      "exemplo_correto": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro temperatura_celsius = 40\n\t\treal temperatura_fahrenheit = temperatura_celsius * 1.8 + 32\n\t\t\n\t\tse (temperatura_fahrenheit > 100) {\n\t\t\tescreva(\"Alerta de calor\")\n\t\t} senao {\n\t\t\tescreva(\"Temperatura normal\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "Nota 10.0. Léxico validado. O estudante respeitou os tipos nativos, formatação pontuada e regras de desvio condicional do VisuAlg/Portugol.",
+          "nota_final": 10.0,
+          "pontos_positivos": [
+            "Conversão de base correta",
+            "Comandos condicionais coerentes"
+          ],
+          "pontos_negativos": [],
+          "feedback": "Nota 10.0. Tudo certo. O cálculo fracionário respeita o padrão da linguagem e as condições 'se/senao' foram muito bem formatadas."
+        }
+      },
+      "exemplo_erro_logica": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro temperatura_celsius = 40\n\t\t\n\t\treal temperatura_fahrenheit = temperatura_celsius * (1.8 + 32)\n\t\t\n\t\tse (temperatura_fahrenheit > 100) {\n\t\t\tescreva(\"Alerta de calor\")\n\t\t} senao {\n\t\t\tescreva(\"Temperatura normal\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "Nota 4.0. Declaração aceita. Os agrupadores embutidos antes do fator aditivo destruíram o cálculo real esperado para a temperatura.",
+          "nota_final": 4.0,
+          "pontos_positivos": ["Sintaxe das variáveis exata"],
+          "pontos_negativos": ["Má alocação de agrupadores aritméticos"],
+          "feedback": "Nota 4.0. Corrija a fórmula retirando os parênteses. A lógica de conversão é falha quando somamos 32 ao multiplicador 1.8 antes de interagir com os graus Celsius."
+        }
+      },
+      "exemplo_erro_sintaxe": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro temperatura_celsius = 40\n\t\t\n\t\treal temperatura_fahrenheit = temperatura_celsius * 1,8 + 32\n\t\t\n\t\tse (temperatura_fahrenheit > 100) {\n\t\t\tescreva(\"Alerta de calor\")\n\t\t} senao {\n\t\t\tescreva(\"Temperatura normal\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "Nota 0.0. Infração de convenção numérica. A inserção de vírgula onde deveria haver a pontuação decimal anglo-saxônica interrompe a varredura sintática.",
+          "nota_final": 0.0,
+          "pontos_positivos": ["Fluxograma lógico correto"],
+          "pontos_negativos": [
+            "Utilização de vírgula no lugar de ponto em valores decimais"
+          ],
+          "feedback": "Nota 0.0. Mude `1,8` para `1.8`. Valores flutuantes exigem a notação de ponto nas plataformas de programação para serem reconhecidos."
+        }
+      },
+      "exemplo_erro_atalho": {
+        "codigo": "programa {\n\tfuncao inicio() {\n\t\tinteiro temperatura_celsius = 40\n\t\t\n\t\treal temperatura_fahrenheit = temperatura_celsius * 1,8 + 32\n\t\t\n\t\tse (temperatura_fahrenheit > 100) {\n\t\t\tescreva(\"Alerta de calor\")\n\t\t} senao {\n\t\t\tescreva(\"Temperatura normal\")\n\t\t}\n\t}\n}",
+        "saida_esperada": {
+          "raciocinio": "Nota 5.0. Penalização por desvio léxico repetido. O aluno replicou erro de separador decimal, afetando de modo isolado a interpretação flutuante sem comprometer a semântica condicional.",
+          "nota_final": 5.0,
+          "pontos_positivos": ["Concepção correta do bloco condicional"],
+          "pontos_negativos": [
+            "Desobediência à notação padrão de ponto flutuante"
+          ],
+          "feedback": "Nota 5.0. Ajuste o marcador de casa decimal no multiplicador para ponto (`1.8`). A sua condicional foi escrita corretamente, mas o tratamento do tipo real está fora do padrão."
+        }
+      }
+    }
   }
 }
