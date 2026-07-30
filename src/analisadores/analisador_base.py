@@ -1,3 +1,5 @@
+from typing import Any
+
 """
 Módulo que define a interface padrão para os analisadores sintáticos e léxicos.
 Implementa o Padrão Strategy para garantir que todas as linguagens suportadas
@@ -14,7 +16,7 @@ class AnalisadorBase:
     pelo AvaliadorIA.
     """
 
-    def analisar(self, codigo, config):
+    def analisar(self, codigo: str, config: dict[str, Any]) -> str:
         """
         Método de execução da análise. Deve ser sobrescrito pelas subclasses
         para aplicar as regras de varredura específicas de cada linguagem.

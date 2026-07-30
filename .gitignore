@@ -19,7 +19,7 @@ env/
 
 # Arquivos Gerados pelo Projeto
 # Ignora os relatórios CSV gerados pelo main.py.
-Relatorio_Notas_Turma.csv
+Relatorio_Geral.csv
 
 # Ignora os feedbacks individuais em JSON gerados para os alunos.
 *_resultado.json

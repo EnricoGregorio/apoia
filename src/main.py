@@ -1,3 +1,4 @@
+from __future__ import annotations
 import argparse
 import os
 import json
@@ -12,21 +13,21 @@ Responsável por varrer o repositório local, coordenar correções em lote
 e gerar relatórios consolidados em CSV.
 """
 
-def ler_arquivo(caminho):
+def ler_arquivo(caminho: str) -> str | None:
     if not os.path.exists(caminho):
         print(f"ERRO: Arquivo não encontrado: {caminho}")
         return None
     with open(caminho, 'r', encoding='utf-8') as f:
         return f.read()
 
-def modo_lote(avaliador, args):
+def modo_lote(avaliador: AvaliadorIA, args: argparse.Namespace) -> None:
     print(f"\n--- INICIANDO CORREÇÃO EM LOTE (Raiz: {args.pasta_alunos}) ---")
 
     tempo_inicio_total = time.time()
     
     diretorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     caminho_rubrica = os.path.join(diretorio_base, args.rubrica)
-    caminho_alunos = os.path.join(diretorio_base, args.pasta_alunos)
+    caminho_respostas = os.path.join(diretorio_base, args.pasta_alunos)
     caminho_exemplos = os.path.join(diretorio_base, args.exemplos)
     
     pasta_correcoes = os.path.join(diretorio_base, "correcoes")
@@ -42,7 +43,7 @@ def modo_lote(avaliador, args):
     json_rubrica = json.loads(texto_rubrica)
     base_exemplos = json.loads(texto_exemplos_json)
     
-    padrao_busca = os.path.join(caminho_alunos, "*", "*", "*.*")
+    padrao_busca = os.path.join(caminho_respostas, "*", "*", "*.*")
     arquivos_alunos = glob.glob(padrao_busca)
     
     if not arquivos_alunos:
@@ -51,13 +52,13 @@ def modo_lote(avaliador, args):
 
     relatorio_geral = []
 
-    for caminho_aluno in arquivos_alunos:
-        partes_caminho = caminho_aluno.split(os.sep)
-        nome_aluno = partes_caminho[-1]
+    for caminho_resposta in arquivos_alunos:
+        partes_caminho = caminho_resposta.split(os.sep)
+        nome_arquivo = partes_caminho[-1]
         linguagem = partes_caminho[-2].lower()
         questao = partes_caminho[-3].lower()
 
-        print(f"\n> Verificando: {nome_aluno} | Questão: {questao.upper()} | Linguagem: {linguagem.capitalize()}...")
+        print(f"\n> Verificando arquivo {nome_arquivo} | Questão: {questao.replace("questao", "questao ").capitalize()} | Linguagem: {linguagem.capitalize()}...")
 
         # Extrai o enunciado dinamicamente da fonte única, o JSON.
         texto_enunciado = base_exemplos.get(questao, {}).get("enunciado", "Enunciado não fornecido.")
@@ -65,22 +66,22 @@ def modo_lote(avaliador, args):
         
         # O sistema continuará ignorando questões que ainda não estão mapeadas no JSON
         if not exemplos_dinamicos:
-             print(f"  [!] Gabarito RAG ausente para {questao}/{linguagem}. Pulando avaliação para evitar poluição de dados.")
+             print(f"[ATENÇÃO] Gabarito RAG ausente para {questao}/{linguagem}. Pulando avaliação para evitar poluição de dados.")
              continue
 
         tempo_inicio_aluno = time.time()
         
-        texto_codigo = ler_arquivo(caminho_aluno)
+        texto_codigo = ler_arquivo(caminho_resposta)
 
         resultado = avaliador.avaliar(
-            texto_enunciado, 
-            json_rubrica, 
-            texto_codigo, 
+            enunciado=texto_enunciado, 
+            rubrica=json_rubrica, 
+            codigo=texto_codigo, 
             exemplos=exemplos_dinamicos, 
             linguagem=linguagem
         )
         
-        nome_sem_extensao = os.path.splitext(nome_aluno)[0]
+        nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
         nome_arquivo_json = f"{linguagem}_{nome_sem_extensao}.json"
         caminho_json = os.path.join(pasta_correcoes, nome_arquivo_json)
         
@@ -101,7 +102,7 @@ def modo_lote(avaliador, args):
         relatorio_geral.append({
             "Questão": questao.replace('_', ' ').capitalize(),
             "Linguagem": linguagem.capitalize(),
-            "Arquivo": nome_aluno,
+            "Arquivo": nome_arquivo,
             "Nota": str(nota).replace('.', ','),
             "Status AST": "VIOLAÇÃO" if is_violacao else "OK",
             "Tempo (s)": f"{duracao_individual:.2f}",
@@ -109,7 +110,7 @@ def modo_lote(avaliador, args):
         })
 
     if relatorio_geral:
-        caminho_csv = os.path.join(diretorio_base, "Relatorio_Notas_Turma.csv")
+        caminho_csv = os.path.join(diretorio_base, "Relatorio_Geral.csv")
         with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
             writer = csv.DictWriter(f, fieldnames=["Questão", "Linguagem", "Arquivo", "Nota", "Status AST", "Tempo (s)", "Feedback Resumido"], delimiter=';')
             writer.writeheader()
@@ -126,7 +127,7 @@ def modo_lote(avaliador, args):
     segundos = int(duracao_total % 60)
     print(f"Tempo total de processamento: {minutos}m {segundos:.2f}s")
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--modelo', default="gemma4:12b")
     parser.add_argument('--rubrica', default="configs/rubrica.json")

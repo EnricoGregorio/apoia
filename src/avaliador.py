@@ -1,5 +1,6 @@
 import json
 import re
+from typing import Any
 import requests # Para se comunicar com o Ollama via rede.
 from analisadores import AnalisadorPython, AnalisadorJava, AnalisadorPortugol
 
@@ -17,12 +18,23 @@ class AvaliadorIA:
     encaminha o código do aluno junto com os exemplos RAG para a API do Ollama.
     """
     
-    def __init__(self, nome_modelo):
+    def __init__(self, nome_modelo: str) -> None:
         print(f">>> Inicializando Motor Híbrido conectado ao Ollama (Modelo: {nome_modelo})...")
-        self.modelo = nome_modelo 
-        self.url_ollama = "http://localhost:11434/api/generate" 
+        self.modelo: str = nome_modelo 
+        self.url_ollama: str = "http://localhost:11434/api/generate" 
 
-    def avaliar(self, enunciado, rubrica, codigo_aluno, exemplos=None, linguagem="python"):
+    def avaliar(self, enunciado: str, rubrica: dict[str, Any], codigo: str | None, exemplos: dict[str, Any] | None = None, linguagem: str = "python") -> dict[str, Any]:
+        # GUARD CLAUSE
+        # Se o código for nulo, devolvemos nota 0 imediatamente.
+        if codigo is None:
+            return {
+                "raciocinio": "O arquivo submetido pelo aluno estava corrompido, vazio ou não foi encontrado.",
+                "nota_final": 0.0,
+                "pontos_positivos": [],
+                "pontos_negativos": ["Arquivo de código nulo ou ilegível."],
+                "feedback": "Não conseguimos ler o seu arquivo de código. Verifique se o arquivo não está corrompido e submeta novamente."
+            }
+
         # Filtro inteligente: o Analisador chama o modelo analisador correspondente à linguagem.
         analisador = None
         if linguagem.lower() == "python":
@@ -35,10 +47,10 @@ class AvaliadorIA:
         # Se existir um analisador para a lingugagem, ele atua como porteiro.
         if analisador:
             config_ast = rubrica.get("configuracao_ast", {})
-            relatorio_ast = analisador.analisar(codigo_aluno, config_ast)
+            relatorio_ast = analisador.analisar(codigo, config_ast)
             
             if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
-                print(f">>> BLOQUEIO AST: {relatorio_ast}")
+                print(f">>> [BLOQUEIO AST] {relatorio_ast}")
                 return {
                     "raciocinio": f"O código foi rejeitado automaticamente pela análise estática. Motivo: {relatorio_ast}",
                     "nota_final": 0.0,
@@ -74,10 +86,10 @@ Sua única função é ler o código, analisá-lo com base no enunciado e retorn
 {enunciado}
 
 ### CÓDIGO DO ALUNO A SER AVALIADO:
-{codigo_aluno}
+{codigo}
 """
         
-        print(f">>> ESTRUTURA OK. Enviando código e exemplos para a IA (Ollama)...")
+        print(f">>> ESTRUTURA OK. Enviando código e exemplos para a IA...")
         
         payload = {
             "model": self.modelo,
@@ -109,7 +121,7 @@ Sua única função é ler o código, analisá-lo com base no enunciado e retorn
                 "nota_final": 0.0,
                 "pontos_positivos": [],
                 "pontos_negativos": [f"Falha de Rede: {str(e)}"],
-                "feedback": "Verifique se o aplicativo do Ollama está aberto no seu Mac e rodando."
+                "feedback": "Verifique se o aplicativo do Ollama está aberto no seu dispositivo e rodando."
             }
         except json.JSONDecodeError as e:
             return {
