@@ -5,6 +5,7 @@ import json
 import csv
 import glob
 import time
+from dotenv import load_dotenv
 from avaliador import AvaliadorIA
 
 """
@@ -128,14 +129,17 @@ def modo_lote(avaliador: AvaliadorIA, args: argparse.Namespace) -> None:
     print(f"Tempo total de processamento: {minutos}m {segundos:.2f}s")
 
 def main() -> None:
+    # Carrega as variáveis de ambiente escondidas no arquivo .env.
+    load_dotenv()
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--modelo', default="gemma4:12b")
     parser.add_argument('--rubrica', default="configs/rubrica.json")
     parser.add_argument('--exemplos', default="configs/base_exemplos.json")
     parser.add_argument('--pasta_alunos', default="codigos_alunos")
 
-    parser.add_argument('--ip_local', default="192.168.18.141", help="IP fixo do PC na rede da casa")
-    parser.add_argument('--ip_tunel', default="100.85.59.121", help="IP do PC no túnel (Tailscale)")
+    parser.add_argument('--ip_local', default=os.getenv("IP_LOCAL", "127.0.0.1"), help="IP fixo do PC na rede da casa")
+    parser.add_argument('--ip_tunel', default=os.getenv("IP_TUNEL", "127.0.0.1"), help="IP do PC no túnel (Tailscale)")
     
     args = parser.parse_args()
 

@@ -49,15 +49,11 @@ class AvaliadorIA:
                 if resposta.status_code == 200:
                     print(f">>> Sucesso! O Avaliador conectou via {nome_rede} em {duracao:.2f} segundos.")
                     return f"{base_url}/api/generate"
-            except requests.exceptions.RequestException as err:
+            except requests.exceptions.RequestException:
                 tempo_fim = time.time()
                 duracao = tempo_fim - tempo_inicio
 
-                # Extrai o nome da classe do erro e a mensagem fornecida pelo sistema operacional
-                tipo_erro = type(err).__name__
-                
                 print(f"    [X] Falha ao conectar via {nome_rede} após {duracao:.2f} segundos.")
-                print(f"        -> Motivo Técnico: [{tipo_erro}] {err}")
                 continue
                 
         # Se esgotar as tentativas para a rede local e o túnel e não conectar, interrompe o sistema.
