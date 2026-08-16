@@ -133,10 +133,20 @@ def main() -> None:
     parser.add_argument('--rubrica', default="configs/rubrica.json")
     parser.add_argument('--exemplos', default="configs/base_exemplos.json")
     parser.add_argument('--pasta_alunos', default="codigos_alunos")
+
+    parser.add_argument('--ip_local', default="192.168.18.141", help="IP fixo do PC na rede da casa")
+    parser.add_argument('--ip_tunel', default="100.85.59.121", help="IP do PC no túnel (Tailscale)")
     
     args = parser.parse_args()
-    avaliador = AvaliadorIA(args.modelo)
-    modo_lote(avaliador, args)
+
+    try:
+        # Passa os IPs para a classe avaliar.
+        avaliador = AvaliadorIA(args.modelo, args.ip_local, args.ip_tunel)
+        modo_lote(avaliador, args)
+    except ConnectionError as erro_rede:
+        # Captura o erro customizado e exibe a mensagem de ligar o túnel.
+        print(erro_rede)
+        exit(1)
 
 if __name__ == "__main__":
     main()

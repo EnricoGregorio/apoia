@@ -18,10 +18,54 @@ class AvaliadorIA:
     encaminha o código do aluno junto com os exemplos RAG para a API do Ollama.
     """
     
-    def __init__(self, nome_modelo: str) -> None:
+    def __init__(self, nome_modelo: str, ip_local: str, ip_tunel: str) -> None:
         print(f">>> Inicializando Motor Híbrido conectado ao Ollama (Modelo: {nome_modelo})...")
         self.modelo: str = nome_modelo 
-        self.url_ollama: str = "http://localhost:11434/api/generate" 
+        self.url_ollama: str = self._descobrir_url_ativa(ip_local, ip_tunel)
+
+    def _descobrir_url_ativa(self, ip_local: str, ip_tunel: str) -> str:
+        """
+        Testa a conectividade com o PC começando pela rede local.
+        Se falhar, tenta o túnel do Tailscale.
+        """
+        import time
+
+        urls_para_testar = [
+            (f"http://{ip_local}:11434", "Rede Local"),
+            (f"http://{ip_tunel}:11434", "Rede Virtual")
+        ]
+        
+        for base_url, nome_rede in urls_para_testar:
+            print(f">>> Testando conexão via {nome_rede} em {base_url}...")
+
+            tempo_inicio = time.time()
+            try:
+                # Dispara um GET simples na raiz da API, com timeout de 10 segundos.
+                resposta = requests.get(base_url, timeout=10)
+
+                tempo_fim = time.time()
+                duracao = tempo_fim - tempo_inicio
+
+                if resposta.status_code == 200:
+                    print(f">>> Sucesso! O Avaliador conectou via {nome_rede} em {duracao:.2f} segundos.")
+                    return f"{base_url}/api/generate"
+            except requests.exceptions.RequestException as err:
+                tempo_fim = time.time()
+                duracao = tempo_fim - tempo_inicio
+
+                # Extrai o nome da classe do erro e a mensagem fornecida pelo sistema operacional
+                tipo_erro = type(err).__name__
+                
+                print(f"    [X] Falha ao conectar via {nome_rede} após {duracao:.2f} segundos.")
+                print(f"        -> Motivo Técnico: [{tipo_erro}] {err}")
+                continue
+                
+        # Se esgotar as tentativas para a rede local e o túnel e não conectar, interrompe o sistema.
+        raise ConnectionError(
+            "\n[ERRO CRÍTICO] Não foi possível alcançar o motor de IA no PC.\n"
+            f"Tentamos o IP Local ({ip_local}) e o túnel ({ip_tunel}).\n"
+            "Verifique se o servidor com o modelo está ligado e certifique-se de que o túnel está ativo no seu dispositivo."
+        )
 
     def avaliar(self, enunciado: str, rubrica: dict[str, Any], codigo: str | None, exemplos: dict[str, Any] | None = None, linguagem: str = "python") -> dict[str, Any]:
         # GUARD CLAUSE
