@@ -110,23 +110,43 @@ def modo_lote(avaliador: AvaliadorIA, args: argparse.Namespace) -> None:
             "Feedback Resumido": feedback_limpo[:150]
         })
 
+    tempo_fim_total = time.time()
+    duracao_total = tempo_fim_total - tempo_inicio_total
+
+    minutos = int(duracao_total // 60)
+    segundos = duracao_total % 60  # Removido o int() para manter a precisão decimal.
+    tempo_formatado = f"{minutos}m {segundos:.2f}s"
+
     if relatorio_geral:
         caminho_csv = os.path.join(diretorio_base, "Relatorio_Geral.csv")
+
         with open(caminho_csv, "w", newline='', encoding="utf-8-sig") as f:
-            writer = csv.DictWriter(f, fieldnames=["Questão", "Linguagem", "Arquivo", "Nota", "Status AST", "Tempo (s)", "Feedback Resumido"], delimiter=';')
+            colunas = ["Questão", "Linguagem", "Arquivo", "Nota", "Status AST", "Tempo (s)", "Feedback Resumido"]
+            writer = csv.DictWriter(f, fieldnames=colunas, delimiter=';')
+
             writer.writeheader()
             writer.writerows(relatorio_geral)
+
+            # Linha em branco para separar visualmente.
+            writer.writerow({campo: "" for campo in colunas})
+
+            # Adiciona linha com o Totalizador.
+            writer.writerow({
+                "Questão": "---",
+                "Linguagem": "---",
+                "Arquivo": "Tempo Total de Processamento (formatado)",
+                "Nota": "---",
+                "Status AST": "---",
+                "Tempo (s)": tempo_formatado,
+                "Feedback Resumido": "---"
+            })
+
         print(f"\nCONCLUÍDO! Planilha salva em: {caminho_csv}")
         print(f"Correções individuais salvas em: {pasta_correcoes}")
     else:
         print("\nNenhum arquivo foi avaliado. Verifique se o base_exemplos.json está preenchido corretamente.")
 
-    tempo_fim_total = time.time()
-    duracao_total = tempo_fim_total - tempo_inicio_total
-
-    minutos = int(duracao_total // 60)
-    segundos = int(duracao_total % 60)
-    print(f"Tempo total de processamento: {minutos}m {segundos:.2f}s")
+    print(f"Tempo total de processamento: {tempo_formatado}")
 
 def main() -> None:
     # Carrega as variáveis de ambiente escondidas no arquivo .env.
