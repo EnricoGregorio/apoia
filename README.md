@@ -6,7 +6,7 @@ O **ApoIA** é um motor de correção automatizada de exercícios de programaç�
 
 O motor opera em um padrão de *Pipeline* de duas etapas (Motor Híbrido):
 1. **O Porteiro (AST):** Verifica erros críticos, de sintaxe e violações de restrições pedagógicas (ex: uso proibido de `while` ou funções prontas) antes de enviar o código para a IA.
-2. **O Professor (LLM + RAG):** Recebe o código validado pelo AST junto com um JSON de exemplos (RAG). A IA compara a lógica do aluno com o conhecimento injetado e devolve uma avaliação JSON com nota, raciocínio e feedback estruturado.
+2. **O Professor (LLM + RAG - Execução no Servidor):** Recebe o código validado pelo AST junto com um JSON de exemplos (RAG). O sistema de rede estabelece comunicação com o servidor de IA através de um *fallback* inteligente (Rede Local -> Rede Virtual). A IA então compara a lógica do aluno com o conhecimento injetado e devolve uma avaliação JSON com nota, raciocínio e feedback estruturado.
 
 ## 📂 Estrutura de Diretórios
 
@@ -30,7 +30,7 @@ apoia/
 │   └── main.py             # Orquestrador central que varre pastas e gera o CSV final.
 ├── gerar_turma.py          # Script de testes para simular turmas com N alunos.
 ├── requirements.txt        # Dependências do projeto.
-└── Relatorio_Notas_Turma.csv # Saída: Planilha consolidada com todas as notas da turma.
+├── .env.example            # Template para as variáveis de ambiente (IPs do servidor).
 ```
 
 ## ⚙️ Como Funciona (Fluxo de Execução)
@@ -39,21 +39,27 @@ apoia/
 2. **Entrada de Dados:** Os códigos dos alunos são dispostos em `codigos_alunos/<questaoX>/<linguagem>/<nome_aluno.ext>`.
 3. **Orquestração:** Ao rodar o `main.py`, o script lê dinamicamente as submissões.
 4. **Validação (AST):** O `AvaliadorIA` aciona o analisador correspondente (Python, Java ou Portugol). Se houver violação (ex: falta de indentação ou uso de pacote proibido), o aluno recebe nota `0.0` instantaneamente, economizando processamento.
-5. **Avaliação Semântica (IA):** Se a sintaxe for válida, o código é enviado à API local do Ollama (`http://localhost:11434/api/generate`). O prompt injeta o enunciado e os exemplos do RAG para parametrizar a correção.
-6. **Saída:** O sistema salva um JSON detalhado na pasta `correcoes/` para cada aluno e consolida todas as notas e tempos de execução no `Relatorio_Notas_Turma.csv`.
+5. **Avaliação Semântica (IA):** Se a sintaxe for válida, o código é preparado para envio. O sistema descobre ativamente a melhor rota para o servidor executando um health-check dinâmico com timeout. O prompt injeta o enunciado e os exemplos do RAG e aciona a API do Ollama no IP resolvido (na porta 11434).
+6. **Saída:** O sistema salva um JSON detalhado na pasta `correcoes/` para cada aluno e consolida todas as notas e tempos de execução no `Relatorio_Geral.csv`.
 
 ## 🚀 Como Executar
 
 ### 1. Pré-requisitos
 * **Python 3.10+** instalado.
-* **Ollama** rodando localmente com o modelo desejado (Padrão: `gemma4:12b` ou `llama3`).
-* Instalar dependências:
+* **Ollama** rodando localmente com o modelo desejado (Padrão: `gemma4:12b`).
+* **Instalar dependências:**
   ```bash
   pip install -r requirements.txt
   ```
+* **Variáveis de Ambiente:** O projeto exige a configuração dos IPs do servidor para estabelecer a conexão.
+  1. Copie o arquivo de template:
+    ```Bash
+      cp .env.example .env
+    ```
+  2. Edite o novo arquivo `.env` inserindo os endereços da sua infraestrutura (o arquivo `.env` já está no `.gitignore` para sua segurança).
 
 ### 2. Executando Correções em Lote
-Após organizar os códigos dentro da pasta `codigos_alunos/`, rode o maestro na raiz do projeto:
+Após organizar os códigos dentro da pasta `codigos_alunos/<questao>/<linguagem>`, rode o maestro na raiz do projeto:
 
 ```bash
 python src/main.py
@@ -64,6 +70,8 @@ Argumentos opcionais suportados pelo CLI:
 * `--rubrica`: Caminho do arquivo de configurações AST (default: *configs/rubrica.json*).
 * `--exemplos`: Caminho do banco RAG (default: *configs/base_exemplos.json*).
 * `--pasta_alunos`: Diretório alvo da correção (default: *codigos_alunos*).
+* `--ip_local`: Endereço IP do servidor na rede física (Wi-Fi/Cabo). O sistema tentará essa rota primeiro.
+* `--ip_tunel`: Endereço IP do túnel seguro (Tailscale) do servidor. Usado como fallback automático caso o roteador bloqueie o acesso local.
 
 ### 3. Teste de Carga (Simulação)
 Para simular a presença de alunos no sistema:
