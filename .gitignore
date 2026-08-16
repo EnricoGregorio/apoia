@@ -29,3 +29,6 @@ pasta_alunos/
 
 # Ignora os artefatos de avaliacao gerados pelo motor da IA
 correcoes/
+
+# Ignora os arquivos de teste gerados pelo gerar_turma.py
+codigos_alunos/
