@@ -92,7 +92,7 @@ class AnalisadorPortugol(AnalisadorBase):
             if not relatorio_erros:
                 return "SUCESSO"
             
-            return "VIOLAÇÕES DETECTADAS: " + ", ".join(set(relatorio_erros))
+            return "ele detectou as seguintes violações presentes no código: " + ", ".join(set(relatorio_erros))
 
         except Exception as e:
             return f"ERRO NO ANALISADOR PORTUGOL: {str(e)}"

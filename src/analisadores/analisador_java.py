@@ -76,10 +76,10 @@ class AnalisadorJava(AnalisadorBase):
             if not relatorio_erros:
                 return "SUCESSO"
             
-            return "VIOLAÇÕES DETECTADAS: " + ", ".join(set(relatorio_erros))
+            return "ele detectou as seguintes violações presentes no código: " + ", ".join(set(relatorio_erros))
 
         # Captura os erros usando os módulos explícitos
         except (parser.JavaSyntaxError, tokenizer.LexerError):
-            return "ERRO CRÍTICO: Código com erro de sintaxe (não compila)."
+            return "possui erro de sintaxe, portanto não pôde ser compilado."
         except Exception as e:
             return f"ERRO NO ANALISADOR JAVA: {str(e)}"

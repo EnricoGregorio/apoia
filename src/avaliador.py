@@ -89,14 +89,14 @@ class AvaliadorIA:
             config_ast = rubrica.get("configuracao_ast", {})
             relatorio_ast = analisador.analisar(codigo, config_ast)
             
-            if "ERRO CRÍTICO" in relatorio_ast or "VIOLAÇÕES" in relatorio_ast:
-                print(f">>> [BLOQUEIO AST] {relatorio_ast}")
+            if "sintaxe" in relatorio_ast or "violações" in relatorio_ast:
+                print(f">>> [BLOQUEIO AST]: Código com erro de sintaxe." if "sintaxe" in relatorio_ast else ">>> [BLOQUEIO AST]: Código com violações detectadas.")
                 return {
                     "raciocinio": f"O código foi rejeitado automaticamente pela análise estática. Motivo: {relatorio_ast}",
                     "nota_final": 0.0,
                     "pontos_positivos": [],
                     "pontos_negativos": [relatorio_ast],
-                    "feedback": f"Seu código não pôde ser avaliado. Erro estrutural grave: {relatorio_ast}"
+                    "feedback": f"Seu código foi barrado pelo AST, pois {relatorio_ast}"
                 }
 
         texto_exemplos = ""
@@ -117,7 +117,9 @@ Sua única função é ler o código, analisá-lo com base no enunciado e retorn
 1. Se a lógica estiver correta e resolver o problema: Nota 10.
 2. Se tiver erros de lógica (índices, loop infinito, cálculo errado): Variação da nota de 1 a 9.
 3. Se fugir do tema (ex: fez a média em vez de ordenação): Nota 0.
-4. Escreva o 'feedback' dirigindo-se diretamente ao aluno (ex: "Seu código falhou porque...").
+4. Se o código estiver desorganizado (nomes de variáveis, métodos e classes com camel case, pascal case, kebab case e snake case no mesmo código): Retire 1 ponto.
+5. Se o código estiver mal indentado: Retire 1 ponto.
+6. Escreva o 'feedback' dirigindo-se diretamente ao aluno (ex: "Seu código falhou porque...").
 
 {texto_exemplos}
 
